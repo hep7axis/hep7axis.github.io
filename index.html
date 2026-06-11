@@ -27,9 +27,10 @@
             background-color:var(--bg);
             color:var(--white);
             font-family:'Roboto',sans-serif;
-            font-size:clamp(0.9rem, 0.4vw + 0.85rem, 1.15rem);
-            line-height:1.6;
+            font-size:clamp(0.95rem, 0.4vw + 0.85rem, 1.15rem);
+            line-height:1.7;
             padding:clamp(15px, 5vw, 45px);
+            -webkit-text-size-adjust:100%;
         }
 
         /* ---------- CABECERA ---------- */
@@ -82,20 +83,21 @@
             padding-left:15px;
         }
 
-        /* ---------- SECCIÓN MANIFIESTO (ROOT BLOCK) ---------- */
+        /* ---------- SECCIÓN MANIFIESTO (UI/UX OPTIMIZADA) ---------- */
         .manifesto-container{
-            max-width:720px; /* Ancho optimizado para lectura cómoda sin fatiga visual */
+            max-width:680px; /* Longitud de línea óptima (60-70 caracteres) para evitar fatiga de lectura */
             margin:0 auto clamp(50px, 9vw, 90px) auto;
             border:1px solid var(--green);
-            padding:clamp(20px, 5vw, 45px);
+            padding:clamp(20px, 6vw, 45px);
             background-color:var(--bg);
         }
         .manifesto-p{
-            font-size:clamp(1rem, 0.3vw + 0.95rem, 1.25rem);
-            line-height:1.75;
-            margin-bottom:28px;
+            font-size:clamp(1rem, 0.2vw + 0.95rem, 1.2rem);
+            line-height:1.8;
+            margin-bottom:32px;
             color:var(--white);
             text-align:left;
+            hyphens:auto;
         }
         .manifesto-p:last-child{
             margin-bottom:0;
@@ -107,6 +109,8 @@
             font-weight: 700;
             margin-right: 12px;
             font-family: monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
         }
 
         /* ---------- REJILLA DE HEPTÁLOGOS ---------- */
@@ -290,15 +294,15 @@
     </header>
 
     <main>
-        <h2 class="section-title">MANIFIESTO_FOUNDATION</h2>
-        <section class="manifesto-container" aria-label="Manifiesto definitivo Hep7axis">
+        <h2 class="section-title">MANIFIESTO</h2>
+        <section class="manifesto-container" aria-label="Manifiesto Hep7axis">
             <p class="manifesto-p" data-paragraph="[01]">Tiempos convulsos exigen rebeldía. La nueva esclavitud en formato de tecno dominación nos condena a la síntesis del silicio, el copy/paste degenerado en escribir positivo; toda idea es buena y nada está mal. El acontecer no exige nada nuevo, quiere que se nos pudra el alma repitiendo, consumiendo, diluyendo nuestra existencia, mientras monetizan nuestra vital atención.</p>
             
             <p class="manifesto-p" data-paragraph="[02]">Es por eso que queremos tomar lo crucial, lo antiguo, lo primordial. Recuperar la rabia, la vida, nuestras almas. ¡Hagamos algo! ¡Cualquier hueá! Queremos darle cara a la desesperanza, hablando de todo lo que se produce para darle sentido a nuestra vida. Queremos abrir una brecha en la realidad y subvertir tu interés.</p>
             
             <p class="manifesto-p" data-paragraph="[03]">Volver a escribir como lo hacen los humanos: con errores, con cosas raras, garabatos, no hablando con acento porteño. Sin emoticones que hagan perecer tu capacidad crítica. Sin trampas estéticas sacadas del trending. Palabras reales, de gente real. Traumas reales orquestados en el blues más triste. Risas sin escrúpulos, fascinaciones producto del hiperfoco y la sangre que lleva cada palabra que compartimos con ustedes; verán humanidad en cada letra que les entreguemos.</p>
             
-            <p class="manifesto-p" data-paragraph="[04]">Cuando pensamos en el cómo, se nos han cruzado signos. Nos ha llevado al 7, como si existiese un número que gobierna todo. Nos ha consumido la superstición y pensamos que hemos revelado el secreto del universo. Es que todo nos apunta al 7. 7 noches se llama la edición de Borges a sus 7 conferencias dictadas en 1977 (en plena dictadura el colaboracionista conchetumare). 7 son los libros que componen la saga “Fundación” de Asimov. 7 son los samuráis culiaos de Kurosawa, 7 son las plagas, 7 son los pecados capitales y Se7en es un peliculón. Todo nos lleva a la luz de los 7, a los 7 infiernos. Y 7 puntos reunidos en un heptálogo, es nuestro grito revulsivo.</p>
+            <p class="manifesto-p" data-paragraph="[04]">Cuando pensamos en el cómo, se nos han cruzado signos. Nos ha llevado al 7, como si existiese un número que gobierna todo. Nos ha conocido la superstición y pensamos que hemos revelado el secreto del universo. Es que todo nos apunta al 7. 7 noches se llama la edición de Borges a sus 7 conferencias dictadas en 1977 (en plena dictadura el colaboracionista conchetumare). 7 son los libros que componen la saga “Fundación” de Asimov. 7 son los samuráis culiaos de Kurosawa, 7 son las plagas, 7 son los pecados capitales y Se7en es un peliculón. Todo nos lleva a la luz de los 7, a los 7 infiernos. Y 7 puntos reunidos en un heptálogo, es nuestro grito revulsivo.</p>
             
             <p class="manifesto-p" data-paragraph="[05]">La heptalogía es la disciplina que nos impusimos por delirios y presagios que sólo los humanos logramos concebir. Es que lo que nace de la irracionalidad es también un puente a la magia, a la vez que son palabras que vienen con la nostalgia de habernos perdido en la telaraña de la dominación, del orden, del progreso, del comer bien y ahogarnos en el sinsentido. Es nuestra receta de cóctel molotov, para salir en masa a pelear por nuestros tiempos. Pero también es para hacerla cortita: en siete párrafos tenemos que decir algo.</p>
             
@@ -327,7 +331,6 @@
 
     /* =======================================================================
        LÓGICA DE ARCHIVO / PRÓXIMAS PUBLICACIONES
-       Para añadir un nuevo Heptálogo, copia el bloque de objeto y colócalo arriba.
        ======================================================================= */
     const HEPTALOGOS = [
         {
