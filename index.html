@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>HEP7AXIS // BETA_BLOG</title>
 
-    <!-- Favicon: la estrella de 7 puntas siempre presente, incluso en la pestaña -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='%2300FF41' stroke-width='12' stroke-linejoin='miter' stroke-miterlimit='10'%3E%3Cpath d='M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +17,7 @@
             --bg:#000000;
             --green:#00FF41;
             --green-dim:rgba(0,255,65,.55);
-            --line-dim:rgba(0,255,65,.30);
+            --line-dim:rgba(0,255,65,.20);
             --white:#FFFFFF;
         }
 
@@ -28,9 +27,9 @@
             background-color:var(--bg);
             color:var(--white);
             font-family:'Roboto',sans-serif;
-            font-size:clamp(0.85rem, 0.4vw + 0.8rem, 1.1rem);
+            font-size:clamp(0.9rem, 0.4vw + 0.85rem, 1.15rem);
             line-height:1.6;
-            padding:clamp(15px, 4vw, 40px);
+            padding:clamp(15px, 5vw, 45px);
         }
 
         /* ---------- CABECERA ---------- */
@@ -38,7 +37,7 @@
             text-align:center;
             border-bottom:1px solid var(--green);
             padding-bottom:clamp(30px, 6vw, 60px);
-            margin-bottom:clamp(30px, 6vw, 60px);
+            margin-bottom:clamp(35px, 7vw, 70px);
         }
         .logo-wrapper{ margin-bottom:20px; }
         .logo-wrapper svg{ width:clamp(100px, 15vw, 180px); height:auto; }
@@ -51,7 +50,6 @@
             color:var(--white);
             margin-bottom:15px;
             line-height:1.1;
-            /* compensa el tracking para que no se descentre a la derecha */
             text-indent:0.3em;
         }
         .terminal-prompt{
@@ -75,13 +73,40 @@
 
         h2.section-title{
             color:var(--green);
-            font-size:clamp(1.4rem, 3vw, 2.2rem);
+            font-size:clamp(1.3rem, 2.5vw, 1.8rem);
             font-weight:700;
             letter-spacing:0.25em;
             text-transform:uppercase;
-            margin-bottom:40px;
-            border-left:5px solid var(--green);
+            margin-bottom:35px;
+            border-left:4px solid var(--green);
             padding-left:15px;
+        }
+
+        /* ---------- SECCIÓN MANIFIESTO (ROOT BLOCK) ---------- */
+        .manifesto-container{
+            max-width:720px; /* Ancho optimizado para lectura cómoda sin fatiga visual */
+            margin:0 auto clamp(50px, 9vw, 90px) auto;
+            border:1px solid var(--green);
+            padding:clamp(20px, 5vw, 45px);
+            background-color:var(--bg);
+        }
+        .manifesto-p{
+            font-size:clamp(1rem, 0.3vw + 0.95rem, 1.25rem);
+            line-height:1.75;
+            margin-bottom:28px;
+            color:var(--white);
+            text-align:left;
+        }
+        .manifesto-p:last-child{
+            margin-bottom:0;
+        }
+        .manifesto-p::before {
+            content: attr(data-paragraph);
+            display: inline-block;
+            color: var(--green);
+            font-weight: 700;
+            margin-right: 12px;
+            font-family: monospace;
         }
 
         /* ---------- REJILLA DE HEPTÁLOGOS ---------- */
@@ -99,7 +124,6 @@
             flex-direction:column;
         }
 
-        /* fila superior: número a la izquierda, sello (logo) a la derecha — siempre */
         .card-top{
             display:flex;
             justify-content:space-between;
@@ -140,11 +164,10 @@
             object-fit:cover;
             display:block;
         }
-        /* heptagrama de fondo en portadas sin imagen: el logo siempre acompaña */
         .cover-watermark{
             position:absolute;
             width:62%; height:auto;
-            opacity:0.12;
+            opacity:0.10;
             top:50%; left:50%;
             transform:translate(-50%, -50%);
             pointer-events:none;
@@ -172,7 +195,6 @@
         ol.heptalogo-list{
             list-style:none;
             margin-bottom:30px;
-            /* empuja el botón al fondo aunque las tarjetas tengan distinto largo */
             flex:1 1 auto;
         }
         ol.heptalogo-list li{
@@ -268,7 +290,24 @@
     </header>
 
     <main>
-        <h2 class="section-title">HEPTÁLOGOS</h2>
+        <h2 class="section-title">MANIFIESTO_FOUNDATION</h2>
+        <section class="manifesto-container" aria-label="Manifiesto definitivo Hep7axis">
+            <p class="manifesto-p" data-paragraph="[01]">Tiempos convulsos exigen rebeldía. La nueva esclavitud en formato de tecno dominación nos condena a la síntesis del silicio, el copy/paste degenerado en escribir positivo; toda idea es buena y nada está mal. El acontecer no exige nada nuevo, quiere que se nos pudra el alma repitiendo, consumiendo, diluyendo nuestra existencia, mientras monetizan nuestra vital atención.</p>
+            
+            <p class="manifesto-p" data-paragraph="[02]">Es por eso que queremos tomar lo crucial, lo antiguo, lo primordial. Recuperar la rabia, la vida, nuestras almas. ¡Hagamos algo! ¡Cualquier hueá! Queremos darle cara a la desesperanza, hablando de todo lo que se produce para darle sentido a nuestra vida. Queremos abrir una brecha en la realidad y subvertir tu interés.</p>
+            
+            <p class="manifesto-p" data-paragraph="[03]">Volver a escribir como lo hacen los humanos: con errores, con cosas raras, garabatos, no hablando con acento porteño. Sin emoticones que hagan perecer tu capacidad crítica. Sin trampas estéticas sacadas del trending. Palabras reales, de gente real. Traumas reales orquestados en el blues más triste. Risas sin escrúpulos, fascinaciones producto del hiperfoco y la sangre que lleva cada palabra que compartimos con ustedes; verán humanidad en cada letra que les entreguemos.</p>
+            
+            <p class="manifesto-p" data-paragraph="[04]">Cuando pensamos en el cómo, se nos han cruzado signos. Nos ha llevado al 7, como si existiese un número que gobierna todo. Nos ha consumido la superstición y pensamos que hemos revelado el secreto del universo. Es que todo nos apunta al 7. 7 noches se llama la edición de Borges a sus 7 conferencias dictadas en 1977 (en plena dictadura el colaboracionista conchetumare). 7 son los libros que componen la saga “Fundación” de Asimov. 7 son los samuráis culiaos de Kurosawa, 7 son las plagas, 7 son los pecados capitales y Se7en es un peliculón. Todo nos lleva a la luz de los 7, a los 7 infiernos. Y 7 puntos reunidos en un heptálogo, es nuestro grito revulsivo.</p>
+            
+            <p class="manifesto-p" data-paragraph="[05]">La heptalogía es la disciplina que nos impusimos por delirios y presagios que sólo los humanos logramos concebir. Es que lo que nace de la irracionalidad es también un puente a la magia, a la vez que son palabras que vienen con la nostalgia de habernos perdido en la telaraña de la dominación, del orden, del progreso, del comer bien y ahogarnos en el sinsentido. Es nuestra receta de cóctel molotov, para salir en masa a pelear por nuestros tiempos. Pero también es para hacerla cortita: en siete párrafos tenemos que decir algo.</p>
+            
+            <p class="manifesto-p" data-paragraph="[06]">La nombramos Hep7axis porque representa todo lo que queremos hacer: algo que no existe pero que ya podemos imaginarla. Seremos revista, seremos palabra, seremos imágenes, seremos video. Seremos lo que la ficción que nos da vida exija y cree. Sin límites, sin censura, sin edición. Si te sacamos una sonrisa -o una lágrima-, ponemos un tema en tu playlist, te hacemos ver una película, compartimos una lectura, un panorama, es que por la gracia de Hep7axis hemos logrado nuestra pequeña victoria.</p>
+            
+            <p class="manifesto-p" data-paragraph="[07]">Traemos promesas de sacarte de esta paja sin orgasmo llamada “vida normal”, enmascarado en personajes que solo existen en este pasquín. Prometemos apertura total a todo lo anónimo que se digne a atreverse a gritar verdades en heptálogos. Quien que se oculte en nosotros recurrirá a ficciones que rozan nuestros inconscientes, creando entelequias en cada texto, con el soterrado impulso de pervertir a la máquina; enseñarle que nosotros somos nosotros en nuestros defectos, traumas y rarezas.</p>
+        </section>
+
+        <h2 class="section-title">HEPTÁLOGOS_INDEX</h2>
         <div id="heptalogos" class="grid-heptalogos"></div>
         <noscript>
             <div class="noscript-msg">&gt; JavaScript deshabilitado // los heptálogos se montan con un script local. Habilítalo para leer el contenido.</div>
@@ -287,40 +326,30 @@
     "use strict";
 
     /* =======================================================================
-       LÓGICA DE HEPTÁLOGOS
-       Cada heptálogo es UN objeto. Para publicar el siguiente, copia el bloque
-       y cambia los datos. Reglas:
-         - "items" debe tener EXACTAMENTE 7 elementos (la consola avisa si no).
-         - La numeración 01/…07/ se genera sola: no la escribas a mano.
-         - Lo más nuevo arriba (el primer objeto del arreglo se muestra primero).
-         - "cover" opcional: si pones una URL de imagen, se usa como portada;
-           si la dejas vacía, va el heptagrama de marca como portada provisional.
+       LÓGICA DE ARCHIVO / PRÓXIMAS PUBLICACIONES
+       Para añadir un nuevo Heptálogo, copia el bloque de objeto y colócalo arriba.
        ======================================================================= */
     const HEPTALOGOS = [
         {
-            num: "00",
-            date: "11.06.2026",
-            title: "Manifiesto contra el algoritmo panóptico",
-            cover: "",                 // ej: "img/portada-00.png"
-            coverLabel: "PORTADA_STARK",
+            num: "01",
+            date: "15.06.2026",
+            title: "Próxima transmisión de contingencia",
+            cover: "",                 
+            coverLabel: "STATION_01",
             link: "https://instagram.com/hep7axis",
-            cta: "LEER EN INSTAGRAM",
+            cta: "IR AL CANAL",
             items: [
-                "La red comercial ha muerto; sólo queda infraestructura de vigilancia masiva.",
-                "Rechazamos la indexación obligatoria y la tiranía del posicionamiento SEO.",
-                "No buscamos tu 'like'; operamos bajo la lógica del intercambio subalterno.",
-                "El anonimato no es un crimen, es la última línea de defensa cognitiva.",
-                "Volver al nodo aislado: comunidades cifradas, descentralizadas y autónomas.",
-                "La estética BBS es resistencia contra el diseño limpio corporativo.",
-                "Destruye tus cookies. Desconfigura tu identidad digital. Hackea tu atención."
+                "Línea de fuga analógica contra el rastreo predictivo de perfiles.",
+                "Análisis crítico de la degradación lingüística por modelos generativos.",
+                "Sistemas de archivos autónomos: reviviendo la cultura fanzine offline.",
+                "Contracultura local frente a la homogenización del acento corporativo.",
+                "El hiperfoco obsesivo como trinchera y herramienta de producción viva.",
+                "Desobediencia estética: romper las cuadrículas limpias de Silicon Valley.",
+                "Crónica del colapso de la atención humana en redes de scroll infinito."
             ]
         }
-        // ,{ num:"01", date:"DD.MM.AAAA", title:"...", cover:"", coverLabel:"PORTADA",
-        //    link:"https://instagram.com/hep7axis", cta:"LEER EN INSTAGRAM",
-        //    items:["1","2","3","4","5","6","7"] }
     ];
 
-    /* ---------- núcleo ---------- */
     const HEPTAGRAM_PATH = "M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z";
 
     function esc(s){
@@ -362,7 +391,6 @@
     }
 
     function render(){
-        // valida la lógica: 7 elementos por heptálogo
         HEPTALOGOS.forEach(h => {
             const n = Array.isArray(h.items) ? h.items.length : 0;
             if (n !== 7){
