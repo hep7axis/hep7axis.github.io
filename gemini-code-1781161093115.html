@@ -1,407 +1,470 @@
+```html
 <!doctype html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="robots" content="noindex, nofollow, noarchive">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>HEP7AXIS // BETA_BLOG</title>
+    <title>HEP7AXIS // SYSTEM_OVERRIDE</title>
 
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='%2300FF41' stroke-width='12' stroke-linejoin='miter' stroke-miterlimit='10'%3E%3Cpath d='M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='%2300FF41' stroke-width='12' stroke-linejoin='miter'%3E%3Cpath d='M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z'/%3E%3C/svg%3E">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;700&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root{
-            --bg:#000000;
-            --green:#00FF41;
-            --green-dim:rgba(0,255,65,.55);
-            --line-dim:rgba(0,255,65,.20);
-            --white:#FFFFFF;
+            --bg: #000000;
+            --green: #00FF41;
+            --green-dim: rgba(0, 255, 65, 0.35);
+            --green-dark: rgba(0, 255, 65, 0.1);
+            --pink: #FF00FF;
+            --pink-dim: rgba(255, 0, 255, 0.25);
+            --blue: #00FFFF;
+            --blue-dim: rgba(0, 255, 255, 0.25);
+            --white: #FFFFFF;
+            --terminal-font: 'Roboto Mono', monospace;
         }
 
-        *{ box-sizing:border-box; margin:0; padding:0; }
-
-        body{
-            background-color:var(--bg);
-            color:var(--white);
-            font-family:'Roboto',sans-serif;
-            font-size:clamp(0.9rem, 0.4vw + 0.85rem, 1.15rem);
-            line-height:1.6;
-            padding:clamp(15px, 5vw, 45px);
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
         }
 
-        /* ---------- CABECERA ---------- */
-        header{
-            text-align:center;
-            border-bottom:1px solid var(--green);
-            padding-bottom:clamp(30px, 6vw, 60px);
-            margin-bottom:clamp(35px, 7vw, 70px);
-        }
-        .logo-wrapper{ margin-bottom:20px; }
-        .logo-wrapper svg{ width:clamp(100px, 15vw, 180px); height:auto; }
-
-        h1{
-            font-size:clamp(2.2rem, 6vw, 4.5rem);
-            font-weight:900;
-            letter-spacing:0.3em;
-            text-transform:uppercase;
-            color:var(--white);
-            margin-bottom:15px;
-            line-height:1.1;
-            text-indent:0.3em;
-        }
-        .terminal-prompt{
-            color:var(--green);
-            font-size:clamp(0.75rem, 1.5vw, 1rem);
-            font-weight:400;
-            letter-spacing:0.15em;
-            text-transform:uppercase;
-        }
-        .cursor{
-            display:inline-block;
-            width:0.6em; height:1.05em;
-            background:var(--green);
-            vertical-align:-0.15em;
-            margin-left:6px;
-            animation:blink 1.1s step-end infinite;
-        }
-        @keyframes blink{ 50%{ opacity:0; } }
-
-        main{ max-width:1300px; margin:0 auto; }
-
-        h2.section-title{
-            color:var(--green);
-            font-size:clamp(1.3rem, 2.5vw, 1.8rem);
-            font-weight:700;
-            letter-spacing:0.25em;
-            text-transform:uppercase;
-            margin-bottom:35px;
-            border-left:4px solid var(--green);
-            padding-left:15px;
+        body {
+            background-color: var(--bg);
+            color: var(--white);
+            font-family: 'Roboto', sans-serif;
+            font-size: clamp(0.9rem, 0.3vw + 0.85rem, 1.1rem);
+            line-height: 1.6;
+            padding: clamp(10px, 3vw, 30px);
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* ---------- SECCIÓN MANIFIESTO (ROOT BLOCK) ---------- */
-        .manifesto-container{
-            max-width:720px; /* Ancho optimizado para lectura cómoda sin fatiga visual */
-            margin:0 auto clamp(50px, 9vw, 90px) auto;
-            border:1px solid var(--green);
-            padding:clamp(20px, 5vw, 45px);
-            background-color:var(--bg);
+        /* Scanlines - Efecto sutil de monitor CRT */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 9999;
+            background-size: 100% 4px, 6px 100%;
+            pointer-events: none;
         }
-        .manifesto-p{
-            font-size:clamp(1rem, 0.3vw + 0.95rem, 1.25rem);
-            line-height:1.75;
-            margin-bottom:28px;
-            color:var(--white);
-            text-align:left;
+
+        /* ---------- HERO HEADER CONTENEDOR CENTRAL ---------- */
+        .cyber-hero {
+            display: grid;
+            grid-template-columns: 1fr;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            margin: 0 auto clamp(40px, 8vw, 80px) auto;
+            max-width: 1000px;
+            padding: 20px;
+            border: 1px solid var(--green-dim);
         }
-        .manifesto-p:last-child{
-            margin-bottom:0;
+
+        /* Cuadrículas decorativas en las esquinas del Hero */
+        .cyber-hero::before {
+            content: ":: PROTOCOL_04";
+            position: absolute;
+            top: -10px; left: 15px;
+            background: var(--bg);
+            color: var(--green);
+            font-family: var(--terminal-font);
+            font-size: 0.75rem;
+            padding: 0 8px;
         }
+
+        .hero-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            position: relative;
+            width: 100%;
+            place-items: center;
+        }
+
+        /* El Heptagrama masivo de fondo */
+        .main-star-svg {
+            width: clamp(280px, 50vw, 520px);
+            height: auto;
+            opacity: 0.85;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.6));
+            animation: pulse_star 6s ease-in-out infinite alternate;
+        }
+
+        /* Título Principal HEP7AXIS - Superpuesto idéntico a la portada */
+        .main-title {
+            position: absolute;
+            font-size: clamp(2.5rem, 8vw, 6.5rem);
+            font-weight: 900;
+            color: var(--white);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            text-align: center;
+            z-index: 2;
+            font-family: 'Roboto', sans-serif;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 30px rgba(0, 255, 65, 0.4);
+            mix-blend-mode: difference;
+            transform: scaleY(1.1);
+        }
+
+        /* Bloques HUD de Datos Flanqueando el Logo (Estilo Portada) */
+        .hud-overlay-text {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            font-family: var(--terminal-font);
+            font-size: clamp(0.65rem, 1.2vw, 0.8rem);
+            color: var(--green);
+            text-transform: uppercase;
+            margin-top: 15px;
+            border-top: 1px dashed var(--green-dim);
+            padding-top: 15px;
+        }
+
+        .hud-left { text-align: left; }
+        .hud-right { text-align: right; }
+        .hud-accent-pink { color: var(--pink); text-shadow: 0 0 4px var(--pink); }
+        .hud-accent-blue { color: var(--blue); text-shadow: 0 0 4px var(--blue); }
+
+        /* ---------- GRID DEL SISTEMA / CORE ---------- */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 25px;
+        }
+
+        .full-width-column {
+            grid-column: 1 / -1;
+        }
+
+        .side-column-left {
+            grid-column: 1 / 4;
+        }
+
+        .center-column-manifesto {
+            grid-column: 4 / 10;
+        }
+
+        .side-column-right {
+            grid-column: 10 / 13;
+        }
+
+        /* Ajustes responsivos para colapsar las columnas laterales HUD */
+        @media (max-width: 1024px) {
+            .side-column-left, .side-column-right {
+                grid-column: 1 / -1;
+            }
+            .center-column-manifesto {
+                grid-column: 1 / -1;
+            }
+        }
+
+        /* ---------- COMPONENTES DE INTERFAZ (WIDGETS HUD) ---------- */
+        .cyber-panel {
+            border: 1px solid var(--green);
+            background-color: rgba(0, 0, 0, 0.85);
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cyber-panel.pink-accent { border: 1px solid var(--pink); box-shadow: inset 0 0 8px rgba(255, 0, 255, 0.1); }
+        .cyber-panel.blue-accent { border: 1px solid var(--blue); box-shadow: inset 0 0 8px rgba(0, 255, 255, 0.1); }
+        .cyber-panel.main-manifesto-glow { 
+            border: 2px solid var(--green); 
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.15), inset 0 0 10px rgba(0, 255, 65, 0.05); 
+        }
+
+        .panel-header {
+            font-family: var(--terminal-font);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed var(--green-dim);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .pink-accent .panel-header { border-bottom-color: var(--pink-dim); }
+        .blue-accent .panel-header { border-bottom-color: var(--blue-dim); }
+
+        .panel-header-icon {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Estructura Interna del Texto del Manifiesto */
+        .manifesto-p {
+            font-size: clamp(1rem, 0.2vw + 0.95rem, 1.2rem);
+            line-height: 1.8;
+            margin-bottom: 30px;
+            color: var(--white);
+            text-align: left;
+            display: flex;
+            align-items: flex-start;
+        }
+        .manifesto-p:last-child { margin-bottom: 0; }
+        
         .manifesto-p::before {
-            content: attr(data-paragraph);
+            content: attr(data-node);
             display: inline-block;
             color: var(--green);
             font-weight: 700;
-            margin-right: 12px;
-            font-family: monospace;
+            margin-right: 15px;
+            font-family: var(--terminal-font);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            background-color: var(--green-dark);
+            padding: 0px 6px;
+            border: 1px solid var(--green-dim);
+        }
+        .pink-accent .manifesto-p::before {
+            color: var(--pink);
+            background-color: rgba(255, 0, 255, 0.1);
+            border-color: var(--pink-dim);
         }
 
-        /* ---------- REJILLA DE HEPTÁLOGOS ---------- */
-        .grid-heptalogos{
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(310px, 1fr));
-            gap:30px;
+        /* Bloques de Datos Técnicos / Código Sintaxis simulada de la imagen */
+        .terminal-code-block {
+            font-family: var(--terminal-font);
+            font-size: 0.75rem;
+            line-height: 1.5;
+            color: var(--green-dim);
+            white-space: pre-line;
         }
 
-        .heptalogo-card{
-            border:1px solid var(--green);
-            padding:25px;
-            background-color:var(--bg);
-            display:flex;
-            flex-direction:column;
+        /* Matriz de puntos decorativa */
+        .dot-matrix {
+            display: grid;
+            grid-template-columns: repeat(8, 6px);
+            gap: 4px;
+            margin-top: 10px;
+        }
+        .dot { width: 6px; height: 6px; background-color: var(--green-dim); }
+        .dot.active-pink { background-color: var(--pink); }
+        .dot.active-blue { background-color: var(--blue); }
+
+        /* ---------- PIE DE INTERFAZ & REDES ---------- */
+        footer {
+            grid-column: 1 / -1;
+            margin-top: 40px;
+            border-top: 1px solid var(--green);
+            padding-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            font-family: var(--terminal-font);
+            font-size: 0.8rem;
+            text-transform: uppercase;
         }
 
-        .card-top{
-            display:flex;
-            justify-content:space-between;
-            align-items:flex-start;
-            gap:12px;
-        }
-        .card-top .num{
-            color:var(--green);
-            font-weight:700;
-            font-size:0.85rem;
-            letter-spacing:0.15em;
-            text-transform:uppercase;
-        }
-        .card-seal{ width:30px; height:30px; flex:0 0 auto; }
-
-        .card-date{
-            color:var(--green-dim);
-            font-size:0.85rem;
-            letter-spacing:0.15em;
-            text-transform:uppercase;
-            margin:4px 0 20px;
+        .footer-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .card-cover{
-            border:1px solid var(--line-dim);
-            min-height:200px;
-            margin-bottom:25px;
-            display:grid;
-            place-items:center;
-            text-align:center;
-            background-color:var(--bg);
-            padding:10px;
-            position:relative;
-            overflow:hidden;
+        .footer-links-grid a {
+            color: var(--green);
+            text-decoration: none;
+            display: inline-content;
+            width: max-content;
+            transition: color 0.2s;
         }
-        .card-cover img{
-            width:100%; height:100%;
-            object-fit:cover;
-            display:block;
-        }
-        .cover-watermark{
-            position:absolute;
-            width:62%; height:auto;
-            opacity:0.10;
-            top:50%; left:50%;
-            transform:translate(-50%, -50%);
-            pointer-events:none;
-        }
-        .ascii-placeholder{
-            position:relative;
-            z-index:1;
-            color:var(--green-dim);
-            font-size:0.75rem;
-            letter-spacing:0.2em;
-            text-transform:uppercase;
-            font-weight:300;
+        .footer-links-grid a:hover {
+            color: var(--white);
+            text-shadow: 0 0 6px var(--green);
         }
 
-        h3.card-title{
-            font-size:clamp(1.1rem, 2vw, 1.4rem);
-            font-weight:900;
-            letter-spacing:0.1em;
-            text-transform:uppercase;
-            color:var(--white);
-            margin-bottom:25px;
-            line-height:1.3;
+        /* Terminal de Invitación y Contacto Directo */
+        .contact-override-panel {
+            grid-column: 1 / -1;
+            border: 1px solid var(--pink);
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.05) 0%, rgba(0, 0, 0, 0) 100%);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.1);
         }
 
-        ol.heptalogo-list{
-            list-style:none;
-            margin-bottom:30px;
-            flex:1 1 auto;
-        }
-        ol.heptalogo-list li{
-            font-size:0.9rem;
-            color:var(--white);
-            margin-bottom:12px;
-            padding-bottom:8px;
-            border-bottom:1px dashed var(--line-dim);
-            text-align:left;
-        }
-        ol.heptalogo-list li:last-child{
-            border-bottom:0;
-            margin-bottom:0;
-            padding-bottom:0;
-        }
-        ol.heptalogo-list li .item-index{
-            color:var(--green);
-            font-weight:700;
-            margin-right:8px;
+        .contact-override-panel::before {
+            content: "CRITICAL_ACCESS_OVERRIDE";
+            position: absolute;
+            top: -9px; left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg);
+            color: var(--pink);
+            font-size: 0.7rem;
+            padding: 0 8px;
+            letter-spacing: 0.1em;
         }
 
-        .read-btn{
-            display:block;
-            width:100%;
-            padding:15px;
-            border:1px solid var(--green);
-            background:transparent;
-            color:var(--green);
-            text-align:center;
-            text-decoration:none;
-            font-weight:700;
-            letter-spacing:0.2em;
-            text-transform:uppercase;
-            font-size:0.85rem;
-            transition:background-color .15s, color .15s;
+        .contact-text {
+            color: var(--white);
+            font-size: clamp(0.9rem, 1vw + 0.8rem, 1.1rem);
+            line-height: 1.6;
         }
-        .read-btn:hover{ background-color:var(--green); color:var(--bg); }
-
-        .noscript-msg{
-            border:1px solid var(--green);
-            padding:20px;
-            color:var(--green);
-            font-size:0.85rem;
-            letter-spacing:0.1em;
-            text-transform:uppercase;
+        
+        .contact-email-link {
+            color: var(--pink);
+            text-decoration: none;
+            font-weight: 700;
+            border-bottom: 1px dashed var(--pink);
+            text-transform: lowercase;
+        }
+        .contact-email-link:hover {
+            color: var(--white);
+            background-color: var(--pink);
         }
 
-        /* ---------- PIE ---------- */
-        footer{
-            max-width:1300px;
-            margin:clamp(50px, 8vw, 100px) auto 0 auto;
-            border-top:1px solid var(--green);
-            padding-top:30px;
-            display:grid;
-            grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
-            gap:20px;
-            font-size:0.85rem;
-            letter-spacing:0.15em;
-            text-transform:uppercase;
-        }
-        .footer-networks a{
-            color:var(--green);
-            text-decoration:none;
-            margin-right:25px;
-            font-weight:500;
-        }
-        .footer-networks a:hover{ text-decoration:underline; }
-        .footer-frequency{ color:var(--green-dim); text-align:right; }
-
-        @media (max-width:600px){
-            .footer-frequency{ text-align:left; margin-top:5px; }
+        .footer-system-status {
+            text-align: right;
+            color: var(--green-dim);
         }
 
-        a:focus-visible, .read-btn:focus-visible{
-            outline:2px solid var(--green);
-            outline-offset:3px;
+        /* ---------- ANIMACIONES ---------- */
+        @keyframes pulse_star {
+            0% { transform: scale(1); filter: drop-shadow(0 0 12px rgba(0, 255, 65, 0.5)); }
+            100% { transform: scale(1.02); filter: drop-shadow(0 0 25px rgba(0, 255, 65, 0.8)); }
         }
-        @media (prefers-reduced-motion:reduce){
-            .cursor{ animation:none; }
+
+        @media (max-width: 768px) {
+            footer { text-align: left; }
+            .footer-system-status { text-align: left; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="logo-wrapper">
-            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Heptagrama Hep7axis" fill="none" stroke="#00FF41" stroke-width="2.5" stroke-linejoin="miter" stroke-miterlimit="10">
+    <header class="cyber-hero">
+        <div class="hero-layout">
+            <svg class="main-star-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#00FF41" stroke-width="2.5" stroke-linejoin="miter" stroke-miterlimit="10">
                 <path d="M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z"/>
             </svg>
+            <h1 class="main-title">HEP7AXIS</h1>
         </div>
-        <h1>HEP7AXIS</h1>
-        <div class="terminal-prompt">&gt; BETA_PHASE_01 // DISIDENCIA_DIGITAL // NO_INDEX // NO_TRACKING<span class="cursor" aria-hidden="true"></span></div>
+
+        <div class="hud-overlay-text">
+            <div class="hud-left">
+                DIGITAL//COUNTER//CULTURE<br>
+                <span class="hud-accent-pink">RAVE//PROTOCOL_04</span><br>
+                z:zz:/A.r/mn.... [SITSRSS]
+            </div>
+            <div class="hud-right">
+                LONDON//1995//DNB//FREQ<br>
+                <span class="hud-accent-blue">ISSUE//01//U_N_L_O_C_K</span><br>
+                ACCESS//07 // DATA_STREAM
+            </div>
+        </div>
     </header>
 
     <main>
-        <h2 class="section-title">MANIFIESTO_FOUNDATION</h2>
-        <section class="manifesto-container" aria-label="Manifiesto definitivo Hep7axis">
-            <p class="manifesto-p" data-paragraph="[01]">Tiempos convulsos exigen rebeldía. La nueva esclavitud en formato de tecno dominación nos condena a la síntesis del silicio, el copy/paste degenerado en escribir positivo; toda idea es buena y nada está mal. El acontecer no exige nada nuevo, quiere que se nos pudra el alma repitiendo, consumiendo, diluyendo nuestra existencia, mientras monetizan nuestra vital atención.</p>
-            
-            <p class="manifesto-p" data-paragraph="[02]">Es por eso que queremos tomar lo crucial, lo antiguo, lo primordial. Recuperar la rabia, la vida, nuestras almas. ¡Hagamos algo! ¡Cualquier hueá! Queremos darle cara a la desesperanza, hablando de todo lo que se produce para darle sentido a nuestra vida. Queremos abrir una brecha en la realidad y subvertir tu interés.</p>
-            
-            <p class="manifesto-p" data-paragraph="[03]">Volver a escribir como lo hacen los humanos: con errores, con cosas raras, garabatos, no hablando con acento porteño. Sin emoticones que hagan perecer tu capacidad crítica. Sin trampas estéticas sacadas del trending. Palabras reales, de gente real. Traumas reales orquestados en el blues más triste. Risas sin escrúpulos, fascinaciones producto del hiperfoco y la sangre que lleva cada palabra que compartimos con ustedes; verán humanidad en cada letra que les entreguemos.</p>
-            
-            <p class="manifesto-p" data-paragraph="[04]">Cuando pensamos en el cómo, se nos han cruzado signos. Nos ha llevado al 7, como si existiese un número que gobierna todo. Nos ha consumido la superstición y pensamos que hemos revelado el secreto del universo. Es que todo nos apunta al 7. 7 noches se llama la edición de Borges a sus 7 conferencias dictadas en 1977 (en plena dictadura el colaboracionista conchetumare). 7 son los libros que componen la saga “Fundación” de Asimov. 7 son los samuráis culiaos de Kurosawa, 7 son las plagas, 7 son los pecados capitales y Se7en es un peliculón. Todo nos lleva a la luz de los 7, a los 7 infiernos. Y 7 puntos reunidos en un heptálogo, es nuestro grito revulsivo.</p>
-            
-            <p class="manifesto-p" data-paragraph="[05]">La heptalogía es la disciplina que nos impusimos por delirios y presagios que sólo los humanos logramos concebir. Es que lo que nace de la irracionalidad es también un puente a la magia, a la vez que son palabras que vienen con la nostalgia de habernos perdido en la telaraña de la dominación, del orden, del progreso, del comer bien y ahogarnos en el sinsentido. Es nuestra receta de cóctel molotov, para salir en masa a pelear por nuestros tiempos. Pero también es para hacerla cortita: en siete párrafos tenemos que decir algo.</p>
-            
-            <p class="manifesto-p" data-paragraph="[06]">La nombramos Hep7axis porque representa todo lo que queremos hacer: algo que no existe pero que ya podemos imaginarla. Seremos revista, seremos palabra, seremos imágenes, seremos video. Seremos lo que la ficción que nos da vida exija y cree. Sin límites, sin censura, sin edición. Si te sacamos una sonrisa -o una lágrima-, ponemos un tema en tu playlist, te hacemos ver una película, compartimos una lectura, un panorama, es que por la gracia de Hep7axis hemos logrado nuestra pequeña victoria.</p>
-            
-            <p class="manifesto-p" data-paragraph="[07]">Traemos promesas de sacarte de esta paja sin orgasmo llamada “vida normal”, enmascarado en personajes que solo existen en este pasquín. Prometemos apertura total a todo lo anónimo que se digne a atreverse a gritar verdades en heptálogos. Quien que se oculte en nosotros recurrirá a ficciones que rozan nuestros inconscientes, creando entelequias en cada texto, con el soterrado impulso de pervertir a la máquina; enseñarle que nosotros somos nosotros en nuestros defectos, traumas y rarezas.</p>
+        
+        <section class="side-column-left cyber-panel pink-accent" aria-label="System Node Left">
+            <div class="panel-header">
+                <span>SYS_MONITOR</span>
+                <svg class="panel-header-icon" viewBox="0 0 24 24" fill="none" stroke="#FF00FF" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M6 21h12M12 17v4"/></svg>
+            </div>
+            <div class="terminal-code-block">
+                data_enter;<br>
+                tech.override_link(m, penetration);<br>
+                else {<br>
+                &nbsp;&nbsp;data_streufor_limited_packer//packetsLits);<br>
+                &nbsp;&nbsp;carx($ratist: factit);<br>
+                &nbsp;&nbsp;<span class="hud-accent-pink">reconnect_window.reputation();</span><br>
+                }<br>
+                data = arew;
+            </div>
+            <div class="dot-matrix">
+                <div class="dot active-pink"></div><div class="dot"></div><div class="dot active-pink"></div><div class="dot"></div>
+                <div class="dot"></div><div class="dot active-pink"></div><div class="dot"></div><div class="dot"></div>
+            </div>
         </section>
 
-        <h2 class="section-title">HEPTÁLOGOS_INDEX</h2>
-        <div id="heptalogos" class="grid-heptalogos"></div>
-        <noscript>
-            <div class="noscript-msg">&gt; JavaScript deshabilitado // los heptálogos se montan con un script local. Habilítalo para leer el contenido.</div>
-        </noscript>
+        <section class="center-column-manifesto cyber-panel main-manifesto-glow" aria-label="Manifiesto Core">
+            <div class="panel-header">
+                <span>MANIFIESTO_CORE_DUMP // DATA_UNEDITED</span>
+                <span class="hud-accent-blue">v0.2_ONLINE</span>
+            </div>
+
+            <article>
+                <p class="manifesto-p" data-node="[NODE_01]">Tiempos convulsos exigen rebeldía. La nueva esclavitud en formato de tecno dominación nos condena a la síntesis del silicio, el copy/paste degenerado en escribir positivo; toda idea es buena y nada está mal. El acontecer no exige nada nuevo, quiere que se nos pudra el alma repitiendo, consumiendo, diluyendo nuestra existencia, mientras monetizan nuestra vital atención.</p>
+                
+                <p class="manifesto-p" data-node="[NODE_02]">Es por eso que queremos tomar lo crucial, lo antiguo, lo primordial. Recuperar la rabia, la vida, nuestras almas. ¡Hagamos algo! ¡Cualquier hueá! Queremos darle cara a la desesperanza, hablando de todo lo que se produce para darle sentido a nuestra vida. Queremos abrir una brecha en la realidad y subvertir tu interés.</p>
+                
+                <p class="manifesto-p" data-node="[NODE_03]">Volver a escribir como lo hacen los humanos: con errores, con cosas raras, garabatos, no hablando con acento porteño. Sin emoticones que hagan perecer tu capacidad crítica. Sin trampas estéticas sacadas del trending. Palabras reales, de gente real. Traumas reales orquestados en el blues más triste. Risas sin escrúpulos, fascinaciones producto del hiperfoco y la sangre que lleva cada palabra que compartimos con ustedes; verán humanidad en cada letra que les entreguemos.</p>
+                
+                <p class="manifesto-p" data-node="[NODE_04]">Cuando pensamos en el cómo, se nos han cruzado signos. Nos ha llevado al 7, como si existiese un número que gobierna todo. Nos ha consumido la superstición y pensamos que hemos revelado el secreto del universo. Es que todo nos apunta al 7. 7 noches se llama la edición de Borges a sus 7 conferencias dictadas en 1977 (en plena dictadura el colaboracionista conchetumare). 7 son los libros que componen la saga “Fundación” de Asimov. 7 son los samuráis culiaos de Kurosawa, 7 son las plagas, 7 son los pecados capitales y Se7en es un peliculón. Todo nos lleva a la luz de los 7, a los 7 infiernos. Y 7 puntos reunidos en un heptálogo, es nuestro grito revulsivo.</p>
+                
+                <p class="manifesto-p" data-node="[NODE_05]">La heptalogía es la disciplina que nos impusimos por delirios y presagios que sólo los humanos logramos concebir. Es que lo que nace de la irracionalidad es también un puente a la magia, a la vez que son palabras que vienen con la nostalgia de habernos perdido en la telaraña de la dominación, del orden, del progreso, del comer bien y ahogarnos en el sinsentido. Es nuestra receta de cóctel molotov, para salir en masa a pelear por nuestros tiempos. Pero también es para hacerla cortita: en siete párrafos tenemos que decir algo.</p>
+                
+                <p class="manifesto-p" data-node="[NODE_06]">La nombramos Hep7axis porque representa todo lo que queremos hacer: algo que no existe pero que ya podemos imaginarla. Seremos revista, seremos palabra, seremos imágenes, seremos video. Seremos lo que la ficción que nos da vida exija y cree. Sin límites, sin censura, sin edición. Si te sacamos una sonrisa -o una lágrima-, ponemos un tema en tu playlist, te hacemos ver una película, compartimos una lectura, un panorama, es que por la gracia de Hep7axis hemos logrado nuestra pequeña victoria.</p>
+                
+                <p class="manifesto-p" data-node="[NODE_07]">Traemos promesas de sacarte de esta paja sin orgasmo llamada “vida normal”, enmascarado en personajes que solo existen en este pasquín. Prometemos apertura total a todo lo anónimo que se digne a atreverse a gritar verdades en heptálogos. Quien que se oculte en nosotros recurrirá a ficciones que rozan nuestros inconscientes, creando entelequias en cada texto, con el soterrado impulso de pervertir a la máquina; enseñarle que nosotros somos nosotros en nuestros defectos, traumas y rarezas.</p>
+            </article>
+        </section>
+
+        <section class="side-column-right cyber-panel blue-accent" aria-label="System Node Right">
+            <div class="panel-header">
+                <span>DATA_STORAGE</span>
+                <svg class="panel-header-icon" viewBox="0 0 24 24" fill="none" stroke="#00FFFF" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            </div>
+            <div class="terminal-code-block">
+                func heptbends (veccion()) {<br>
+                &nbsp;&nbsp;// response_life collic stats<br>
+                &nbsp;&nbsp;// f:m:main:testing<br>
+                &nbsp;&nbsp;// <span class="hud-accent-blue">Asc_cp[l]kT=1</span><br>
+                }<br>
+                DATA_PACKETSS_INIT...<br>
+                STATUS // UNTRACKED
+            </div>
+            <div class="dot-matrix">
+                <div class="dot active-blue"></div><div class="dot active-blue"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dot active-blue"></div><div class="dot"></div><div class="dot active-blue"></div><div class="dot active-blue"></div>
+            </div>
+        </section>
+
+        <section class="full-width-column contact-override-panel">
+            <p class="contact-text">
+                Bienvenidos escritores, pueden enviar sus heptálogos para publicarlos vía 
+                <a href="mailto:contacto@hep7axis.com" class="contact-email-link">contacto@hep7axis.com</a>
+            </p>
+        </section>
+
+        <footer>
+            <div class="footer-links-grid">
+                <span>// NODOS_DE_CONEXION</span>
+                <a href="https://instagram.com/hep7axis" target="_blank" rel="noopener noreferrer">INSTAGRAM // @HEP7AXIS</a>
+                <a href="https://mastodon.social/@hep7axis" target="_blank" rel="noopener noreferrer">MASTODON // @HEP7AXIS</a>
+            </div>
+            <div class="footer-links-grid">
+                <span>// PROTOCOLO_SEGURIDAD</span>
+                <span>NO_INDEX // NO_TRACKING // NO_COOKIES</span>
+            </div>
+            <div class="footer-system-status">
+                [ EMISIÓN_MENSUAL ]<br>
+                [ SYS_STATUS: OPERATIONAL_7/3 ]
+            </div>
+        </footer>
+
     </main>
-
-    <footer>
-        <div class="footer-networks">
-            <a href="https://instagram.com/hep7axis" target="_blank" rel="noopener noreferrer">IG // @HEP7AXIS</a>
-            <a href="https://mastodon.social/@hep7axis" target="_blank" rel="noopener noreferrer">MASTODON // @HEP7AXIS</a>
-        </div>
-        <div class="footer-frequency">[ PUBLICACIÓN MENSUAL ]</div>
-    </footer>
-
-    <script>
-    "use strict";
-
-    /* =======================================================================
-       LÓGICA DE ARCHIVO / PRÓXIMAS PUBLICACIONES
-       Para añadir un nuevo Heptálogo, copia el bloque de objeto y colócalo arriba.
-       ======================================================================= */
-    const HEPTALOGOS = [
-        {
-            num: "01",
-            date: "15.06.2026",
-            title: "Próxima transmisión de contingencia",
-            cover: "",                 
-            coverLabel: "STATION_01",
-            link: "https://instagram.com/hep7axis",
-            cta: "IR AL CANAL",
-            items: [
-                "Línea de fuga analógica contra el rastreo predictivo de perfiles.",
-                "Análisis crítico de la degradación lingüística por modelos generativos.",
-                "Sistemas de archivos autónomos: reviviendo la cultura fanzine offline.",
-                "Contracultura local frente a la homogenización del acento corporativo.",
-                "El hiperfoco obsesivo como trinchera y herramienta de producción viva.",
-                "Desobediencia estética: romper las cuadrículas limpias de Silicon Valley.",
-                "Crónica del colapso de la atención humana en redes de scroll infinito."
-            ]
-        }
-    ];
-
-    const HEPTAGRAM_PATH = "M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z";
-
-    function esc(s){
-        return String(s == null ? "" : s).replace(/[&<>"']/g, c => (
-            { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]
-        ));
-    }
-
-    function heptagram(cls, strokeWidth){
-        return '<svg class="' + cls + '" viewBox="0 0 200 200" role="img" aria-label="Heptagrama Hep7axis" '
-             + 'fill="none" stroke="#00FF41" stroke-width="' + strokeWidth + '" '
-             + 'stroke-linejoin="miter" stroke-miterlimit="10"><path d="' + HEPTAGRAM_PATH + '"/></svg>';
-    }
-
-    function renderCover(h){
-        if (h.cover){
-            return '<div class="card-cover"><img src="' + esc(h.cover) + '" alt="Portada del heptálogo ' + esc(h.num) + '"></div>';
-        }
-        const label = '[ H7_IMG_' + esc(h.num) + ' // ' + esc(h.coverLabel || "PORTADA") + ' ]';
-        return '<div class="card-cover">' + heptagram("cover-watermark", 6)
-             + '<div class="ascii-placeholder">' + label + '</div></div>';
-    }
-
-    function renderItems(items){
-        return items.map((t, i) =>
-            '<li><span class="item-index">' + String(i + 1).padStart(2, "0") + '/</span>' + esc(t) + '</li>'
-        ).join("");
-    }
-
-    function renderCard(h){
-        return '<article class="heptalogo-card">'
-             +   '<div class="card-top"><span class="num">N&ordm; ' + esc(h.num) + '</span>' + heptagram("card-seal", 8) + '</div>'
-             +   '<div class="card-date">' + esc(h.date) + '</div>'
-             +   renderCover(h)
-             +   '<h3 class="card-title">' + esc(h.title) + '</h3>'
-             +   '<ol class="heptalogo-list">' + renderItems(h.items) + '</ol>'
-             +   '<a class="read-btn" href="' + esc(h.link || "#") + '" target="_blank" rel="noopener noreferrer">&gt; ' + esc(h.cta || "LEER EN INSTAGRAM") + '</a>'
-             + '</article>';
-    }
-
-    function render(){
-        HEPTALOGOS.forEach(h => {
-            const n = Array.isArray(h.items) ? h.items.length : 0;
-            if (n !== 7){
-                console.warn('[hep7axis] Heptálogo Nº ' + h.num + ': ' + n + ' elementos — la lógica exige exactamente 7.');
-            }
-        });
-        document.getElementById("heptalogos").innerHTML = HEPTALOGOS.map(renderCard).join("");
-    }
-
-    render();
-    </script>
 
 </body>
 </html>
+
+```
