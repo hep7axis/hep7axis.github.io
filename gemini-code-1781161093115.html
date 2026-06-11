@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex, nofollow, noarchive">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HEP7AXIS // BETA_BLOG</title>
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' fill='none' stroke='%2300FF41' stroke-width='12' stroke-linejoin='miter' stroke-miterlimit='10'%3E%3Cpath d='M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z'/%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        :root{
+            --bg:#000000;
+            --green:#00FF41;
+            --green-dim:rgba(0,255,65,.55);
+            --line-dim:rgba(0,255,65,.20);
+            --white:#FFFFFF;
+        }
+
+        *{ box-sizing:border-box; margin:0; padding:0; }
+
+        body{
+            background-color:var(--bg);
+            color:var(--white);
+            font-family:'Roboto',sans-serif;
+            font-size:clamp(0.95rem, 0.4vw + 0.85rem, 1.15rem);
+            line-height:1.7;
+            padding:clamp(15px, 5vw, 45px);
+            -webkit-text-size-adjust:100%;
+        }
+
+        /* ---------- CABECERA ---------- */
+        header{
+            text-align:center;
+            border-bottom:1px solid var(--green);
+            padding-bottom:clamp(30px, 6vw, 60px);
+            margin-bottom:clamp(35px, 7vw, 70px);
+        }
+        .logo-wrapper{ margin-bottom:20px; }
+        .logo-wrapper svg{ width:clamp(100px, 15vw, 180px); height:auto; }
+
+        h1{
+            font-size:clamp(2.2rem, 6vw, 4.5rem);
+            font-weight:900;
+            letter-spacing:0.3em;
+            text-transform:uppercase;
+            color:var(--white);
+            margin-bottom:15px;
+            line-height:1.1;
+            text-indent:0.3em;
+        }
+        .terminal-prompt{
+            color:var(--green);
+            font-size:clamp(0.75rem, 1.5vw, 1rem);
+            font-weight:400;
+            letter-spacing:0.15em;
+            text-transform:uppercase;
+        }
+        .cursor{
+            display:inline-block;
+            width:0.6em; height:1.05em;
+            background:var(--green);
+            vertical-align:-0.15em;
+            margin-left:6px;
+            animation:blink 1.1s step-end infinite;
+        }
+        @keyframes blink{ 50%{ opacity:0; } }
+
+        main{ max-width:1300px; margin:0 auto; }
+
+        h2.section-title{
+            color:var(--green);
+            font-size:clamp(1.3rem, 2.5vw, 1.8rem);
+            font-weight:700;
+            letter-spacing:0.25em;
+            text-transform:uppercase;
+            margin-bottom:35px;
+            border-left:4px solid var(--green);
+            padding-left:15px;
+        }
+
+        /* ---------- SECCIÓN MANIFIESTO (UI/UX OPTIMIZADA) ---------- */
+        .manifesto-container{
+            max-width:680px; /* Longitud de línea óptima (60-70 caracteres) para evitar fatiga de lectura */
+            margin:0 auto clamp(50px, 9vw, 90px) auto;
+            border:1px solid var(--green);
+            padding:clamp(20px, 6vw, 45px);
+            background-color:var(--bg);
+        }
+        .manifesto-p{
+            font-size:clamp(1rem, 0.2vw + 0.95rem, 1.2rem);
+            line-height:1.8;
+            margin-bottom:32px;
+            color:var(--white);
+            text-align:left;
+            hyphens:auto;
+        }
+        .manifesto-p:last-child{
+            margin-bottom:0;
+        }
+        .manifesto-p::before {
+            content: attr(data-paragraph);
+            display: inline-block;
+            color: var(--green);
+            font-weight: 700;
+            margin-right: 12px;
+            font-family: monospace;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* ---------- REJILLA DE HEPTÁLOGOS ---------- */
+        .grid-heptalogos{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(310px, 1fr));
+            gap:30px;
+        }
+
+        .heptalogo-card{
+            border:1px solid var(--green);
+            padding:25px;
+            background-color:var(--bg);
+            display:flex;
+            flex-direction:column;
+        }
+
+        .card-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:flex-start;
+            gap:12px;
+        }
+        .card-top .num{
+            color:var(--green);
+            font-weight:700;
+            font-size:0.85rem;
+            letter-spacing:0.15em;
+            text-transform:uppercase;
+        }
+        .card-seal{ width:30px; height:30px; flex:0 0 auto; }
+
+        .card-date{
+            color:var(--green-dim);
+            font-size:0.85rem;
+            letter-spacing:0.15em;
+            text-transform:uppercase;
+            margin:4px 0 20px;
+        }
+
+        .card-cover{
+            border:1px solid var(--line-dim);
+            min-height:200px;
+            margin-bottom:25px;
+            display:grid;
+            place-items:center;
+            text-align:center;
+            background-color:var(--bg);
+            padding:10px;
+            position:relative;
+            overflow:hidden;
+        }
+        .card-cover img{
+            width:100%; height:100%;
+            object-fit:cover;
+            display:block;
+        }
+        .cover-watermark{
+            position:absolute;
+            width:62%; height:auto;
+            opacity:0.10;
+            top:50%; left:50%;
+            transform:translate(-50%, -50%);
+            pointer-events:none;
+        }
+        .ascii-placeholder{
+            position:relative;
+            z-index:1;
+            color:var(--green-dim);
+            font-size:0.75rem;
+            letter-spacing:0.2em;
+            text-transform:uppercase;
+            font-weight:300;
+        }
+
+        h3.card-title{
+            font-size:clamp(1.1rem, 2vw, 1.4rem);
+            font-weight:900;
+            letter-spacing:0.1em;
+            text-transform:uppercase;
+            color:var(--white);
+            margin-bottom:25px;
+            line-height:1.3;
+        }
+
+        ol.heptalogo-list{
+            list-style:none;
+            margin-bottom:30px;
+            flex:1 1 auto;
+        }
+        ol.heptalogo-list li{
+            font-size:0.9rem;
+            color:var(--white);
+            margin-bottom:12px;
+            padding-bottom:8px;
+            border-bottom:1px dashed var(--line-dim);
+            text-align:left;
+        }
+        ol.heptalogo-list li:last-child{
+            border-bottom:0;
+            margin-bottom:0;
+            padding-bottom:0;
+        }
+        ol.heptalogo-list li .item-index{
+            color:var(--green);
+            font-weight:700;
+            margin-right:8px;
+        }
+
+        .read-btn{
+            display:block;
+            width:100%;
+            padding:15px;
+            border:1px solid var(--green);
+            background:transparent;
+            color:var(--green);
+            text-align:center;
+            text-decoration:none;
+            font-weight:700;
+            letter-spacing:0.2em;
+            text-transform:uppercase;
+            font-size:0.85rem;
+            transition:background-color .15s, color .15s;
+        }
+        .read-btn:hover{ background-color:var(--green); color:var(--bg); }
+
+        .noscript-msg{
+            border:1px solid var(--green);
+            padding:20px;
+            color:var(--green);
+            font-size:0.85rem;
+            letter-spacing:0.1em;
+            text-transform:uppercase;
+        }
+
+        /* ---------- PIE ---------- */
+        footer{
+            max-width:1300px;
+            margin:clamp(50px, 8vw, 100px) auto 0 auto;
+            border-top:1px solid var(--green);
+            padding-top:30px;
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+            gap:20px;
+            font-size:0.85rem;
+            letter-spacing:0.15em;
+            text-transform:uppercase;
+        }
+        .footer-networks a{
+            color:var(--green);
+            text-decoration:none;
+            margin-right:25px;
+            font-weight:500;
+        }
+        .footer-networks a:hover{ text-decoration:underline; }
+        .footer-frequency{ color:var(--green-dim); text-align:right; }
+
+        @media (max-width:600px){
+            .footer-frequency{ text-align:left; margin-top:5px; }
+        }
+
+        a:focus-visible, .read-btn:focus-visible{
+            outline:2px solid var(--green);
+            outline-offset:3px;
+        }
+        @media (prefers-reduced-motion:reduce){
+            .cursor{ animation:none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-wrapper">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Heptagrama Hep7axis" fill="none" stroke="#00FF41" stroke-width="2.5" stroke-linejoin="miter" stroke-miterlimit="10">
+                <path d="M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z"/>
+            </svg>
+        </div>
+        <h1>HEP7AXIS</h1>
+        <div class="terminal-prompt">&gt; BETA_PHASE_01 // DISIDENCIA_DIGITAL // NO_INDEX // NO_TRACKING<span class="cursor" aria-hidden="true"></span></div>
+    </header>
+
+    <main>
+        <h2 class="section-title">MANIFIESTO</h2>
+        <section class="manifesto-container" aria-label="Manifiesto Hep7axis">
+            <p class="manifesto-p" data-paragraph="[01]">Tiempos convulsos exigen rebeldía. La nueva esclavitud en formato de tecno dominación nos condena a la síntesis del silicio, el copy/paste degenerado en escribir positivo; toda idea es buena y nada está mal. El acontecer no exige nada nuevo, quiere que se nos pudra el alma repitiendo, consumiendo, diluyendo nuestra existencia, mientras monetizan nuestra vital atención.</p>
+            
+            <p class="manifesto-p" data-paragraph="[02]">Es por eso que queremos tomar lo crucial, lo antiguo, lo primordial. Recuperar la rabia, la vida, nuestras almas. ¡Hagamos algo! ¡Cualquier hueá! Queremos darle cara a la desesperanza, hablando de todo lo que se produce para darle sentido a nuestra vida. Queremos abrir una brecha en la realidad y subvertir tu interés.</p>
+            
+            <p class="manifesto-p" data-paragraph="[03]">Volver a escribir como lo hacen los humanos: con errores, con cosas raras, garabatos, no hablando con acento porteño. Sin emoticones que hagan perecer tu capacidad crítica. Sin trampas estéticas sacadas del trending. Palabras reales, de gente real. Traumas reales orquestados en el blues más triste. Risas sin escrúpulos, fascinaciones producto del hiperfoco y la sangre que lleva cada palabra que compartimos con ustedes; verán humanidad en cada letra que les entreguemos.</p>
+            
+            <p class="manifesto-p" data-paragraph="[04]">Cuando pensamos en el cómo, se nos han cruzado signos. Nos ha llevado al 7, como si existiese un número que gobierna todo. Nos ha conocido la superstición y pensamos que hemos revelado el secreto del universo. Es que todo nos apunta al 7. 7 noches se llama la edición de Borges a sus 7 conferencias dictadas en 1977 (en plena dictadura el colaboracionista conchetumare). 7 son los libros que componen la saga “Fundación” de Asimov. 7 son los samuráis culiaos de Kurosawa, 7 son las plagas, 7 son los pecados capitales y Se7en es un peliculón. Todo nos lleva a la luz de los 7, a los 7 infiernos. Y 7 puntos reunidos en un heptálogo, es nuestro grito revulsivo.</p>
+            
+            <p class="manifesto-p" data-paragraph="[05]">La heptalogía es la disciplina que nos impusimos por delirios y presagios que sólo los humanos logramos concebir. Es que lo que nace de la irracionalidad es también un puente a la magia, a la vez que son palabras que vienen con la nostalgia de habernos perdido en la telaraña de la dominación, del orden, del progreso, del comer bien y ahogarnos en el sinsentido. Es nuestra receta de cóctel molotov, para salir en masa a pelear por nuestros tiempos. Pero también es para hacerla cortita: en siete párrafos tenemos que decir algo.</p>
+            
+            <p class="manifesto-p" data-paragraph="[06]">La nombramos Hep7axis porque representa todo lo que queremos hacer: algo que no existe pero que ya podemos imaginarla. Seremos revista, seremos palabra, seremos imágenes, seremos video. Seremos lo que la ficción que nos da vida exija y cree. Sin límites, sin censura, sin edición. Si te sacamos una sonrisa -o una lágrima-, ponemos un tema en tu playlist, te hacemos ver una película, compartimos una lectura, un panorama, es que por la gracia de Hep7axis hemos logrado nuestra pequeña victoria.</p>
+            
+            <p class="manifesto-p" data-paragraph="[07]">Traemos promesas de sacarte de esta paja sin orgasmo llamada “vida normal”, enmascarado en personajes que solo existen en este pasquín. Prometemos apertura total a todo lo anónimo que se digne a atreverse a gritar verdades en heptálogos. Quien que se oculte en nosotros recurrirá a ficciones que rozan nuestros inconscientes, creando entelequias en cada texto, con el soterrado impulso de pervertir a la máquina; enseñarle que nosotros somos nosotros en nuestros defectos, traumas y rarezas.</p>
+        </section>
+
+        <h2 class="section-title">HEPTÁLOGOS_INDEX</h2>
+        <div id="heptalogos" class="grid-heptalogos"></div>
+        <noscript>
+            <div class="noscript-msg">&gt; JavaScript deshabilitado // los heptálogos se montan con un script local. Habilítalo para leer el contenido.</div>
+        </noscript>
+    </main>
+
+    <footer>
+        <div class="footer-networks">
+            <a href="https://instagram.com/hep7axis" target="_blank" rel="noopener noreferrer">IG // @HEP7AXIS</a>
+            <a href="https://mastodon.social/@hep7axis" target="_blank" rel="noopener noreferrer">MASTODON // @HEP7AXIS</a>
+        </div>
+        <div class="footer-frequency">[ PUBLICACIÓN MENSUAL ]</div>
+    </footer>
+
+    <script>
+    "use strict";
+
+    /* =======================================================================
+       LÓGICA DE ARCHIVO / PRÓXIMAS PUBLICACIONES
+       ======================================================================= */
+    const HEPTALOGOS = [
+        {
+            num: "01",
+            date: "15.06.2026",
+            title: "Próxima transmisión de contingencia",
+            cover: "",                 
+            coverLabel: "STATION_01",
+            link: "https://instagram.com/hep7axis",
+            cta: "IR AL CANAL",
+            items: [
+                "Línea de fuga analógica contra el rastreo predictivo de perfiles.",
+                "Análisis crítico de la degradación lingüística por modelos generativos.",
+                "Sistemas de archivos autónomos: reviviendo la cultura fanzine offline.",
+                "Contracultura local frente a la homogenización del acento corporativo.",
+                "El hiperfoco obsesivo como trinchera y herramienta de producción viva.",
+                "Desobediencia estética: romper las cuadrículas limpias de Silicon Valley.",
+                "Crónica del colapso de la atención humana en redes de scroll infinito."
+            ]
+        }
+    ];
+
+    const HEPTAGRAM_PATH = "M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z";
+
+    function esc(s){
+        return String(s == null ? "" : s).replace(/[&<>"']/g, c => (
+            { "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c]
+        ));
+    }
+
+    function heptagram(cls, strokeWidth){
+        return '<svg class="' + cls + '" viewBox="0 0 200 200" role="img" aria-label="Heptagrama Hep7axis" '
+             + 'fill="none" stroke="#00FF41" stroke-width="' + strokeWidth + '" '
+             + 'stroke-linejoin="miter" stroke-miterlimit="10"><path d="' + HEPTAGRAM_PATH + '"/></svg>';
+    }
+
+    function renderCover(h){
+        if (h.cover){
+            return '<div class="card-cover"><img src="' + esc(h.cover) + '" alt="Portada del heptálogo ' + esc(h.num) + '"></div>';
+        }
+        const label = '[ H7_IMG_' + esc(h.num) + ' // ' + esc(h.coverLabel || "PORTADA") + ' ]';
+        return '<div class="card-cover">' + heptagram("cover-watermark", 6)
+             + '<div class="ascii-placeholder">' + label + '</div></div>';
+    }
+
+    function renderItems(items){
+        return items.map((t, i) =>
+            '<li><span class="item-index">' + String(i + 1).padStart(2, "0") + '/</span>' + esc(t) + '</li>'
+        ).join("");
+    }
+
+    function renderCard(h){
+        return '<article class="heptalogo-card">'
+             +   '<div class="card-top"><span class="num">N&ordm; ' + esc(h.num) + '</span>' + heptagram("card-seal", 8) + '</div>'
+             +   '<div class="card-date">' + esc(h.date) + '</div>'
+             +   renderCover(h)
+             +   '<h3 class="card-title">' + esc(h.title) + '</h3>'
+             +   '<ol class="heptalogo-list">' + renderItems(h.items) + '</ol>'
+             +   '<a class="read-btn" href="' + esc(h.link || "#") + '" target="_blank" rel="noopener noreferrer">&gt; ' + esc(h.cta || "LEER EN INSTAGRAM") + '</a>'
+             + '</article>';
+    }
+
+    function render(){
+        HEPTALOGOS.forEach(h => {
+            const n = Array.isArray(h.items) ? h.items.length : 0;
+            if (n !== 7){
+                console.warn('[hep7axis] Heptálogo Nº ' + h.num + ': ' + n + ' elementos — la lógica exige exactamente 7.');
+            }
+        });
+        document.getElementById("heptalogos").innerHTML = HEPTALOGOS.map(renderCard).join("");
+    }
+
+    render();
+    </script>
+
+</body>
+</html>
