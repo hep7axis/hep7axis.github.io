@@ -1,0 +1,59 @@
+---
+layout: default
+---
+<header class="article-topbar">
+    <a class="topbar-brand" href="/">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#00FF41" stroke-width="10" stroke-linejoin="miter" stroke-miterlimit="10" aria-hidden="true">
+            <path d="M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z"/>
+        </svg>
+        <span>HEP7AXIS</span>
+    </a>
+    <a class="topbar-back" href="/">&#9666; STREAM</a>
+</header>
+
+<main class="article-main">
+    <section class="cyber-panel main-manifesto-glow">
+        <div class="panel-header">
+            <span>HEPTALOGO_{{ page.numero | default: "??" }} // {{ page.categoria | default: "palabra" | upcase }}</span>
+            <span class="panel-header-actions">
+                <button class="adhd-btn" id="open-adhd" type="button" aria-haspopup="dialog">&#9680; ADHD MODE</button>
+            </span>
+        </div>
+
+        <div class="article-meta" id="h7-meta">
+            <span class="meta-num">N&ordm; {{ page.numero | default: "??" }}</span>
+            <span class="meta-cat" data-cat="{{ page.categoria | default: 'palabra' }}">{{ page.categoria | default: "palabra" | upcase }}</span>
+            <span class="meta-date">{{ page.date | date: "%d.%m.%Y" }}</span>
+            <span class="meta-autor">FIRMA // {{ page.autor | default: "anónimo" | upcase }}</span>
+        </div>
+
+        <h1 class="article-title">{{ page.title }}</h1>
+
+        <article class="h7-article" id="h7-article">
+{{ content }}
+        </article>
+    </section>
+</main>
+
+<!-- ============ ADHD MODE: LECTOR SIMPLIFICADO ============ -->
+<div class="adhd-reader" id="adhd-reader" role="dialog" aria-modal="true" aria-label="Modo lectura ADHD">
+    <div class="ar-bar">
+        <span class="ar-title">Modo lectura &middot; ADHD</span>
+        <div class="ar-controls">
+            <button class="ar-ctrl" id="ar-dec" type="button" aria-label="Reducir tamaño de texto">A&minus;</button>
+            <button class="ar-ctrl" id="ar-inc" type="button" aria-label="Aumentar tamaño de texto">A+</button>
+            <button class="ar-ctrl" id="ar-focus" type="button" aria-pressed="false">&#9654; enfoque</button>
+            <button class="ar-ctrl" id="ar-close" type="button" aria-label="Salir del modo lectura">salir &#10005;</button>
+        </div>
+    </div>
+    <div class="ar-scroll" id="ar-scroll">
+        <div class="ar-doc" id="ar-doc"></div>
+    </div>
+    <div class="ar-stepper" id="ar-stepper">
+        <button class="ar-step-btn" id="ar-prev" type="button">&#9666; anterior</button>
+        <span class="ar-progress" id="ar-progress">1 / 1</span>
+        <button class="ar-step-btn" id="ar-next" type="button">siguiente &#9656;</button>
+    </div>
+</div>
+
+<script src="/assets/js/heptalogo.js"></script>

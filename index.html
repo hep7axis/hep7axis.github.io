@@ -1,0 +1,119 @@
+---
+layout: default
+---
+<header class="cyber-hero">
+    <div class="hero-layout">
+        <svg class="main-star-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#00FF41" stroke-width="2.5" stroke-linejoin="miter" stroke-miterlimit="10">
+            <path d="M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z"/>
+        </svg>
+        <h1 class="main-title">HEP7AXIS</h1>
+    </div>
+
+    <div class="hud-overlay-text">
+        <div class="hud-left">
+            DIGITAL//COUNTER//CULTURE<br>
+            <span class="hud-accent-pink">parental advisory//explicit content//PROTOCOL_XXX</span><br>
+            zz:zz/P.M/A7/g7.... [VERIDIS QUO]
+        </div>
+        <div class="hud-right">
+            LATAM//1492//CRTL//ALT//SUPR<br>
+            <span class="hud-accent-blue">ISSUE//01//U_N_L_O_C_K</span><br>
+            ACCESSo // DATA_STREAM //
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <section class="side-column-left cyber-panel pink-accent" aria-label="System Node Left">
+        <div class="panel-header">
+            <span>SYS_MONITOR</span>
+            <svg class="panel-header-icon" viewBox="0 0 24 24" fill="none" stroke="#FF00FF" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M6 21h12M12 17v4"/></svg>
+        </div>
+        <div class="terminal-code-block">
+            pro_libertate_mori;<br>
+            tech.overload_of(humans, conspirations, politics, tech);<br>
+            else {<br>
+            &nbsp;&nbsp;need_quemar_+_dinero//+INégalité);<br>
+            &nbsp;&nbsp;KPAO($racist: fǎxīsī);<br>
+            &nbsp;&nbsp;<span class="hud-accent-pink">reconnect_window.view();</span><br>
+            }<br>
+            data = veni, vidi;
+        </div>
+        <div class="dot-matrix">
+            <div class="dot active-pink"></div><div class="dot"></div><div class="dot active-pink"></div><div class="dot"></div>
+            <div class="dot"></div><div class="dot active-pink"></div><div class="dot"></div><div class="dot"></div>
+        </div>
+    </section>
+
+    {% assign ultimo = site.posts.first %}
+    <section class="center-column-manifesto cyber-panel main-manifesto-glow" aria-label="Transmisión">
+        <div class="panel-header">
+            <span>TRANSMISI&Oacute;N // &Uacute;LTIMO_HEPT&Aacute;LOGO</span>
+            <span class="hud-accent-blue">v0.1.1.1.1.1.1.1_ONLINE</span>
+        </div>
+
+        {% if ultimo %}
+        <div class="article-meta">
+            <span class="meta-num">N&ordm; {{ ultimo.numero | default: "??" }}</span>
+            <span class="meta-cat" data-cat="{{ ultimo.categoria | default: 'palabra' }}">{{ ultimo.categoria | default: "palabra" | upcase }}</span>
+            <span class="meta-date">{{ ultimo.date | date: "%d.%m.%Y" }}</span>
+        </div>
+        <h2 class="stream-title">{{ ultimo.title }}</h2>
+        <p class="stream-excerpt">{{ ultimo.excerpt | strip_html | truncate: 220 }}</p>
+        <a class="read-btn" href="{{ ultimo.url }}">&gt; ACCEDER AL HEPT&Aacute;LOGO</a>
+        {% else %}
+        <p class="stream-excerpt">[ SIN TRANSMISIONES TODAV&Iacute;A // EL PRIMER HEPT&Aacute;LOGO EST&Aacute; EN CAMINO ]</p>
+        {% endif %}
+    </section>
+
+    <section class="side-column-right cyber-panel blue-accent" aria-label="System Node Right">
+        <div class="panel-header">
+            <span>DATA_BASURA</span>
+            <svg class="panel-header-icon" viewBox="0 0 24 24" fill="none" stroke="#00FFFF" stroke-width="2"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        </div>
+        <div class="terminal-code-block">
+            heptbyts por ahí (disección()) {<br>
+            &nbsp;&nbsp;// response_life status<br>
+            &nbsp;&nbsp;// f:m:main:testing<br>
+            &nbsp;&nbsp;// <span class="hud-accent-blue">Asc_cp[l]kT=1</span><br>
+            }<br>
+            HEPTA_TESTING_INIT...<br>
+            STATUS // UNTRACKED 4 EVAH
+        </div>
+        <div class="dot-matrix">
+            <div class="dot active-blue"></div><div class="dot active-blue"></div><div class="dot"></div><div class="dot"></div>
+            <div class="dot active-blue"></div><div class="dot"></div><div class="dot active-blue"></div><div class="dot active-blue"></div>
+        </div>
+    </section>
+
+    <section class="full-width-column archive-section" aria-label="Archivo de heptálogos">
+        <div class="panel-header archive-header">
+            <span>ARCHIVO // STREAM_COMPLETO</span>
+            <span class="hud-accent-blue">{{ site.posts | size }} NODO{% if site.posts.size != 1 %}S{% endif %} EMITIDO{% if site.posts.size != 1 %}S{% endif %}</span>
+        </div>
+
+        {% if site.posts.size > 0 %}
+        <div class="archive-grid">
+            {% for post in site.posts %}
+            <article class="archive-card">
+                <div class="card-top">
+                    <span class="meta-num">N&ordm; {{ post.numero | default: "??" }}</span>
+                    <svg class="card-seal" viewBox="0 0 200 200" aria-hidden="true" fill="none" stroke="#00FF41" stroke-width="8" stroke-linejoin="miter" stroke-miterlimit="10"><path d="M100,190 L139.05,18.91 L29.64,156.11 L187.74,79.97 L12.26,79.97 L170.36,156.11 L60.95,18.91 Z"/></svg>
+                </div>
+                <div class="article-meta card-meta-row">
+                    <span class="meta-cat" data-cat="{{ post.categoria | default: 'palabra' }}">{{ post.categoria | default: "palabra" | upcase }}</span>
+                    <span class="meta-date">{{ post.date | date: "%d.%m.%Y" }}</span>
+                </div>
+                <h3 class="card-title">{{ post.title }}</h3>
+                <p class="card-excerpt">{{ post.excerpt | strip_html | truncate: 140 }}</p>
+                <a class="read-btn" href="{{ post.url }}">&gt; LEER</a>
+            </article>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="stream-excerpt">[ EL ARCHIVO CRECE A DIARIO ]</p>
+        {% endif %}
+    </section>
+
+</main>

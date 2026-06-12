@@ -1,0 +1,12 @@
+title: HEP7AXIS
+description: Medio de subversión. Un heptálogo al día.
+url: "https://hep7axis.com"
+timezone: America/Santiago
+permalink: /heptalogos/:slug/
+future: false
+markdown: kramdown
+exclude:
+  - COMO_PUBLICAR.md
+  - PLANTILLA_HEPTALOGO.md
+  - ROADMAP.md
+  - extras
