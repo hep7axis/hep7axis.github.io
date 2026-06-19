@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compendio de Matanzas y Atrocidades del Poder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Roboto', 'sans-serif'],
+                        mono: ['Roboto Mono', 'monospace'],
+                    },
+                    colors: {
+                        raveGreen: '#39FF14',
+                        electricMagenta: '#FF00FF',
+                        electricCyan: '#00FFFF',
+                        absoluteBlack: '#000000',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos globales y barras de scroll personalizadas estilo terminal cyber */
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow: hidden;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #39FF14;
+        }
+        .neon-border {
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+        }
+        .neon-text-cyan {
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="font-sans antialiased h-screen flex flex-col select-none">
+
+    <header class="w-full h-16 border-b border-raveGreen/30 bg-absoluteBlack flex items-center justify-between px-6 z-10">
+        <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 bg-raveGreen rounded-full animate-pulse"></div>
+            <h1 class="text-xl font-black tracking-wider text-raveGreen font-mono">HEPTAXIS // ARCHIVE</h1>
+        </div>
+        <div class="text-sm font-mono text-electricCyan bg-electricCyan/10 px-3 py-1 border border-electricCyan/30 rounded">
+            SALA ACTIVA: <span id="active-sala-label" class="font-bold text-white">II. Antigüedad</span>
+        </div>
+    </header>
+
+    <div class="flex-1 flex overflow-hidden w-full relative">
+        
+        <aside class="w-80 h-full border-r border-raveGreen/20 bg-absoluteBlack flex flex-col justify-between overflow-y-auto z-10 p-4">
+            <div class="space-y-6">
+                <div class="text-xs font-mono text-raveGreen/60 tracking-widest uppercase pb-2 border-b border-raveGreen/20">
+                    Navegación de Salas
+                </div>
+                <nav id="atrium-navigation" class="space-y-1 font-mono text-sm">
+                    </nav>
+            </div>
+            <div class="pt-4 border-t border-raveGreen/10 text-xs font-mono text-raveGreen/40">
+                [Ctrl + K] Buscar · v1.0.0-Rave
+            </div>
+        </aside>
+
+        <main class="flex-1 h-full bg-absoluteBlack relative flex flex-col justify-between items-center p-8 overflow-hidden">
+            
+            <div class="w-full flex justify-between items-center max-w-4xl font-mono text-xs text-electricCyan/60">
+                <div id="subsala-breadcrumb" class="uppercase tracking-wider">II. Antigüedad</div>
+                <div id="item-counter" class="bg-electricCyan/10 px-2 py-1 rounded text-electricCyan border border-electricCyan/20">
+                    [ 01 / 16 ]
+                </div>
+            </div>
+
+            <div class="w-full max-w-4xl flex-1 flex flex-col lg:flex-row items-center justify-center gap-12 my-4 relative">
+                
+                <button onclick="prevItem()" class="absolute left-[-4rem] hidden lg:flex items-center justify-center w-12 h-12 border border-raveGreen/20 hover:border-raveGreen text-raveGreen bg-absoluteBlack/80 rounded font-mono text-xl transition-all">
+                    &lt;
+                </button>
+
+                <div class="flex-1 w-full space-y-6 text-center lg:text-left">
+                    <div>
+                        <div id="event-date-place" class="font-mono text-sm tracking-widest text-electricCyan uppercase neon-text-cyan">
+                            701 a.C. · LAQUIS, REINO DE JUDÁ
+                        </div>
+                        <h2 id="event-title" class="text-3xl lg:text-4xl font-black text-white mt-1 uppercase tracking-tight">
+                            Asedio y deportación de Laquis
+                        </h2>
+                    </div>
+
+                    <div class="p-6 border-l-2 border-raveGreen bg-raveGreen/5 text-base lg:text-lg text-gray-200 leading-relaxed font-light text-left">
+                        <p id="event-summary">
+                            El ejército asirio de Senaquerib toma la ciudad fortificada de Laquis durante su campaña contra Judá: matanza de defensores, empalamientos y deportación masiva de la población. Caso paradigmático del poder imperial asirio sobre un pueblo sometido.
+                        </p>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="copyMasterPrompt()" class="w-full lg:w-auto px-6 py-3 bg-electricMagenta hover:bg-opacity-90 text-black font-black font-mono uppercase tracking-wider rounded shadow-[0_0_15px_rgba(255,0,255,0.4)] transition-all flex items-center justify-center gap-3">
+                            <span>⚡ INICIAR INVESTIGACIÓN CON IA</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div id="graphic-support-container" class="w-64 h-64 border border-electricCyan/30 bg-absoluteBlack flex flex-col items-center justify-center relative group overflow-hidden rounded">
+                    </div>
+
+                <button onclick="nextItem()" class="absolute right-[-4rem] hidden lg:flex items-center justify-center w-12 h-12 border border-raveGreen/20 hover:border-raveGreen text-raveGreen bg-absoluteBlack/80 rounded font-mono text-xl transition-all">
+                    &gt;
+                </button>
+            </div>
+
+            <div class="w-full max-w-4xl border-t border-raveGreen/20 pt-4 flex flex-col sm:flex-row justify-between items-center gap-4 font-mono text-xs">
+                <div class="flex gap-2">
+                    <button onclick="toggleSection('sources')" id="btn-sources" class="px-4 py-2 bg-raveGreen/10 border border-raveGreen/40 text-raveGreen rounded uppercase tracking-wider hover:bg-raveGreen/20 transition-all">
+                        📚 Fuentes Historiográficas
+                    </button>
+                    <button onclick="toggleSection('context')" id="btn-context" class="px-4 py-2 bg-absoluteBlack border border-raveGreen/20 text-raveGreen/60 rounded uppercase tracking-wider hover:bg-raveGreen/10 transition-all">
+                        📖 Contexto Académico
+                    </button>
+                </div>
+                
+                <div class="flex lg:hidden gap-4">
+                    <button onclick="prevItem()" class="px-4 py-2 border border-raveGreen/30 text-raveGreen rounded">&lt; Anterior</button>
+                    <button onclick="nextItem()" class="px-4 py-2 border border-raveGreen/30 text-raveGreen rounded">Siguiente &gt;</button>
+                </div>
+                
+                <div class="text-raveGreen/40 hidden sm:block">
+                    Usa las flechas [←] [→] del teclado para navegar
+                </div>
+            </div>
+
+            <div id="drawer-panel" class="w-full max-w-4xl bg-absoluteBlack border border-raveGreen/30 p-5 mt-4 hidden rounded">
+                <h4 id="drawer-title" class="text-xs tracking-widest text-raveGreen uppercase font-mono mb-2 border-b border-raveGreen/20 pb-1">INVESTIGACIONES NOTABLES</h4>
+                <p id="drawer-content" class="text-sm font-mono text-electricCyan leading-relaxed">
+                    David Ussishkin, The Conquest of Lachish by Sennacherib (Tel Aviv: Institute of Archaeology, 1982).
+                </p>
+            </div>
+
+        </main>
+    </div>
+
+    <div id="art-modal" class="fixed inset-0 bg-absoluteBlack/95 z-50 hidden flex flex-col items-center justify-center p-4">
+        <button onclick="closeArtModal()" class="absolute top-6 right-6 font-mono text-electricMagenta border border-electricMagenta/30 px-3 py-1 rounded hover:bg-electricMagenta/10 transition-all">
+            [ X CLOSE ]
+        </button>
+        <img id="modal-image" src="" alt="Arte expandido" class="max-h-[75vh] max-w-full object-contain border border-electricCyan/30 p-2 bg-black">
+        <div class="mt-4 text-center max-w-xl font-mono">
+            <h3 id="modal-art-title" class="text-raveGreen font-bold text-lg">Relieves de Laquis</h3>
+            <p id="modal-art-desc" class="text-xs text-electricCyan mt-1">Relieves neoasirios del palacio de Senaquerib en Nínive, c. 700–681 a.C.</p>
+        </div>
+    </div>
+
+    <div id="toast-notification" class="fixed bottom-6 right-6 px-4 py-3 border border-electricMagenta bg-absoluteBlack text-electricMagenta font-mono text-xs tracking-wide rounded shadow-[0_0_15px_rgba(255,0,255,0.3)] transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        ⚡ MASTER PROMPT COPIADO AL PORTAPAPELES
+    </div>
+
+    <script>
+        // Muestra de datos curada indexada de tu archivo original para simular el Atrio y las Subsalas
+        const archiveDatabase = [
+            { id: 0, sala: "Nota de método", subsala: null, titulo: "Nota de Método", fecha: "—", lugar: "—", resumen: "Eje estructurado bajo la asimetría de poder institucional contra una población sin poder. El compendio mantiene una sospecha crítica frente al relato del hegemón sin romantizar al actor armado, tratando etiquetas oficiales como categorías en disputa.", arte: "—", investigaciones: "Criterio metodológico unificado para la entrega de bloques historiográficos.", profundizar: "Estudios subalternos clásicos y crítica de fuentes historiográficas antropológicas." },
+            { id: 1, sala: "I. Prehistoria", subsala: null, titulo: "Masacre de Nataruk", fecha: "c. 8000 a.C.", lugar: "Lago Turkana, Kenia", resumen: "Restos de ~27 cazadores-recolectores con marcas de muerte violenta y traumatismos óseos. Se presenta historiográficamente como la evidencia más antigua conocida de violencia intergrupal organizada previa al surgimiento de las estructuras estatales.", arte: "—", investigaciones: "M. Mirazón Lahr et al., 'Inter-group violence among early Holocene hunter-gatherers of West Turkana, Kenya', Nature 529 (2016). Debate: C. Stojanowski et al., Nature 539 (2016).", profundizar: "Lawrence H. Keeley, War Before Civilization (Oxford University Press, 1996)." },
+            { id: 4, sala: "II. Antigüedad", subsala: null, titulo: "Asedio y deportación de Laquis", fecha: "701 a.C.", lugar: "Reino de Judá", resumen: "El ejército asirio de Senaquerib toma la ciudad fortificada de Laquis durante su campaña contra Judá: matanza masiva de defensores, empalamientos y deportación forzada de la población. Caso analítico del terror de Estado imperial asirio.", arte: "Relieves de Laquis (c. 700-681 a.C.)", arteDesc: "Relieves de Nínive expuestos en el British Museum. Representación oficial asiria del perpetrador.", investigaciones: "David Ussishkin, The Renewed Archaeological Excavations at Lachish (1973–1994) (5 vols., 2004).", profundizar: "Marc Van De Mieroop, A History of the Ancient Near East (Blackwell)." },
+            { id: 64, sala: "V. Siglo XIX", subsala: "Bloque 1 — Imperialismo británico", titulo: "Guerra Negra (Tasmania)", fecha: "1824–1831", lugar: "Tasmania, Australia", resumen: "El conflicto asimétrico entre colonos británicos armados y aborígenes tasmanos deriva en el exterminio casi total de la población nativa debido a la violencia armada, la deportación y las enfermedades inducidas.", arte: "Benjamin Duterrau, The Conciliation (1840)", arteDesc: "Retrato idealizado de la sumisión posterior, no de la campaña de exterminio.", investigaciones: "Lyndall Ryan, Tasmanian Aborigines: A History Since 1803 (Allen & Unwin, 2012).", profundizar: "Henry Reynolds, Fate of a Free People (Penguin, 1995)." },
+            { id: 87, sala: "V. Siglo XIX", subsala: "Bloque 6 — Latinoamérica", titulo: "Guerra de la Triple Alianza", fecha: "1864–1870", lugar: "Paraguay", resumen: "Campaña bélica asimétrica de Brasil, Argentina y Uruguay que diezma demográficamente a Paraguay. El consenso de la historiografía moderna estima la pérdida de entre el 60% y el 70% de la población total del país.", arte: "Pinturas testimoniales de Cándido López", arteDesc: "Obras del soldado-pintor argentino que documentó los campos de batalla en tiempo real.", investigaciones: "Thomas L. Whigham, The Paraguayan War: Causes and Early Conduct (2002).", profundizar: "Chris Leuchars, To the Bitter End: Paraguay and the War of the Triple Alliance (2002)." },
+            { id: 141, sala: "VI. Siglo XX", subsala: "Bloque 6 — Latinoamérica", titulo: "Golpe y dictadura militar de Chile", fecha: "1973–1990", lugar: "Chile", resumen: "Derrocamiento violento del gobierno popular e imposición de un régimen dictatorial de terrorismo de Estado. Ejecución, desaparición forzada de más de 3.000 disidentes políticos y tortura sistemática institucionalizada.", arte: "Arpilleras de resistencia política", arteDesc: "Bordados clandestinos textiles realizados por agrupaciones de familiares de víctimas.", investigaciones: "Comisión Nacional de Verdad y Reconciliación, Informe Rettig (1991) y Valech (2004).", profundizar: "Steve J. Stern, Battling for Hearts and Minds: Memory Struggles in Pinochet's Chile (2006)." },
+            { id: 196, sala: "IX. Violencia policial", subsala: null, titulo: "Asesinato de George Floyd y represión", fecha: "2020", lugar: "Estados Unidos", resumen: "Asfixia mecánica letal de un ciudadano negro bajo custodia policial en Mineápolis. El hecho desató una movilización masiva por los derechos civiles (Black Lives Matter) respondida con despliegue de fuerza estatal y abusos documentados contra manifestantes.", arte: "Muralismo callejero Black Lives Matter", arteDesc: "Intervenciones gráficas urbanas efímeras de carácter global.", investigaciones: "Actas judiciales de condena del agente Derek Chauvin (2021).", profundizar: "Keeanga-Yamahtta Taylor, From #BlackLivesMatter to Black Liberation (2016)." }
+        ];
+
+        // Estado del Motor de la Interfaz
+        let currentSalaGlobal = "II. Antigüedad";
+        let currentSubsalaGlobal = null;
+        let itemsFiltrados = [];
+        let indexActivo = 0;
+        let activeSectionTab = 'sources';
+
+        // Estructura de navegación del menú del Atrio
+        const structureMenu = [
+            { name: "Nota de método", subsalas: [] },
+            { name: "I. Prehistoria", subsalas: [] },
+            { name: "II. Antigüedad", subsalas: [] },
+            { 
+                name: "V. Siglo XIX", 
+                subsalas: ["Bloque 1 — Imperialismo británico", "Bloque 2 — Imperialismo francés", "Bloque 6 — Latinoamérica"] 
+            },
+            { 
+                name: "VI. Siglo XX", 
+                subsalas: ["Bloque 6 — Latinoamérica"] 
+            },
+            { name: "IX. Violencia policial", subsalas: [] }
+        ];
+
+        // Inicialización
+        window.addEventListener('DOMContentLoaded', () => {
+            buildAtriumMenu();
+            selectSala("II. Antigüedad", null);
+            
+            // Listeners de teclado
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' || e.key === ' ') {
+                    e.preventDefault();
+                    nextItem();
+                } else if (e.key === 'ArrowLeft') {
+                    prevItem();
+                }
+            });
+        });
+
+        // Generar dinámicamente el Menú de Acordeón
+        function buildAtriumMenu() {
+            const nav = document.getElementById('atrium-navigation');
+            nav.innerHTML = '';
+
+            structureMenu.forEach(item => {
+                const container = document.createElement('div');
+                container.className = 'mb-2';
+
+                const mainButton = document.createElement('button');
+                mainButton.className = 'w-full text-left py-2 px-3 flex items-center justify-between font-medium tracking-wide text-gray-400 hover:text-raveGreen hover:bg-raveGreen/5 rounded transition-all';
+                
+                const hasSubs = item.subsalas.length > 0;
+                mainButton.innerHTML = `
+                    <span>${item.name}</span>
+                    ${hasSubs ? `<span id="arrow-${item.name.replace(/[^a-zA-Z0-9]/g, '')}" class="text-xs transition-transform duration-200">▶</span>` : ''}
+                `;
+
+                mainButton.onclick = () => {
+                    if (hasSubs) {
+                        const subDiv = document.getElementById(`sub-${item.name.replace(/[^a-zA-Z0-9]/g, '')}`);
+                        const arrow = document.getElementById(`arrow-${item.name.replace(/[^a-zA-Z0-9]/g, '')}`);
+                        if (subDiv.classList.contains('hidden')) {
+                            subDiv.classList.remove('hidden');
+                            arrow.style.transform = 'rotate(90deg)';
+                        } else {
+                            subDiv.classList.add('hidden');
+                            arrow.style.transform = 'rotate(0deg)';
+                        }
+                    } else {
+                        selectSala(item.name, null);
+                    }
+                };
+
+                container.appendChild(mainButton);
+
+                if (hasSubs) {
+                    const subContainer = document.createElement('div');
+                    subContainer.id = `sub-${item.name.replace(/[^a-zA-Z0-9]/g, '')}`;
+                    subContainer.className = 'hidden pl-4 mt-1 space-y-1 border-l border-raveGreen/10';
+
+                    item.subsalas.forEach(sub => {
+                        const subBtn = document.createElement('button');
+                        subBtn.className = 'w-full text-left py-1 px-2 text-xs text-gray-500 hover:text-electricCyan hover:bg-electricCyan/5 rounded transition-all truncate';
+                        subBtn.textContent = sub;
+                        subBtn.onclick = () => selectSala(item.name, sub);
+                        subContainer.appendChild(subBtn);
+                    });
+
+                    container.appendChild(subContainer);
+                }
+
+                nav.appendChild(container);
+            });
+        }
+
+        // Selección y Filtrado
+        function selectSala(sala, subsala) {
+            currentSalaGlobal = sala;
+            currentSubsalaGlobal = subsala;
+            
+            // Actualizar etiquetas visuales
+            document.getElementById('active-sala-label').textContent = subsala ? `${sala} (${subsala.split('—')[0].trim()})` : sala;
+            document.getElementById('subsala-breadcrumb').textContent = subsala ? `${sala} > ${subsala}` : sala;
+
+            // Filtrar elementos de la base de datos
+            itemsFiltrados = archiveDatabase.filter(item => item.sala === sala && item.subsala === subsala);
+            indexActivo = 0;
+
+            if(itemsFiltrados.length === 0) {
+                // Estado de respaldo si no hay datos en la muestra parcial
+                itemsFiltrados = [{
+                    titulo: "Espacio en construcción",
+                    fecha: "—", lugar: "—",
+                    resumen: "El repositorio de datos para este bloque cronológico o temático está procesando la verificación bibliográfica. Cada entrega añade ~100 eventos verificados.",
+                    arte: "—", investigaciones: "Repositorio GitHub Pages público en actualización constante.", profundizar: "Consulta el archivo principal .md en la raíz."
+                }];
+            }
+
+            renderItem();
+        }
+
+        // Renderizado del Evento Activo (Pieza Única)
+        function renderItem() {
+            const item = itemsFiltrados[indexActivo];
+            
+            // Textos principales
+            document.getElementById('event-title').textContent = item.titulo;
+            document.getElementById('event-date-place').textContent = `${item.fecha} · ${item.lugar}`;
+            document.getElementById('event-summary').textContent = item.resumen;
+
+            // Contador
+            document.getElementById('item-counter').textContent = `[ ${String(indexActivo + 1).padStart(2, '0')} / ${String(itemsFiltrados.length).padStart(2, '0')} ]`;
+
+            // Renderizar Apoyo Gráfico
+            const graphicContainer = document.getElementById('graphic-support-container');
+            if (item.arte === "—") {
+                graphicContainer.innerHTML = `
+                    <div class="text-center p-4">
+                        <div class="text-raveGreen/20 text-3xl mb-1">∅</div>
+                        <div class="text-[10px] font-mono text-raveGreen/40 tracking-widest uppercase">Sin registro pictórico</div>
+                    </div>
+                `;
+                graphicContainer.className = "w-64 h-64 border border-raveGreen/10 bg-absoluteBlack flex flex-col items-center justify-center relative rounded";
+            } else {
+                // Simulación de placeholder cybernético para la obra
+                graphicContainer.innerHTML = `
+                    <div onclick="openArtModal('${item.arte}', '${item.arteDesc || ''}')" class="w-full h-full flex flex-col justify-between p-3 cursor-pointer hover:bg-electricCyan/5 transition-all">
+                        <div class="text-[9px] font-mono text-electricCyan/60 tracking-wider">[ INTERACTIVE_CANVAS ]</div>
+                        <div class="w-full flex-1 flex flex-col items-center justify-center border border-dashed border-electricCyan/20 my-2 relative">
+                            <span class="text-electricCyan font-mono text-xs text-center px-2 font-bold">${item.arte}</span>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+                        </div>
+                        <div class="text-[9px] font-mono text-electricCyan text-center border border-electricCyan/30 py-1 bg-electricCyan/10">CLIC PARA EXPANDIR</div>
+                    </div>
+                `;
+                graphicContainer.className = "w-64 h-64 border border-electricCyan/40 bg-absoluteBlack flex flex-col relative group overflow-hidden rounded shadow-[0_0_10px_rgba(0,255,255,0.1)]";
+            }
+
+            // Actualizar el cajón inferior dinámico
+            updateDrawer();
+        }
+
+        // Paginación
+        function nextItem() {
+            if (indexActivo < itemsFiltrados.length - 1) {
+                indexActivo++;
+                renderItem();
+            }
+        }
+
+        function prevItem() {
+            if (indexActivo > 0) {
+                indexActivo--;
+                renderItem();
+            }
+        }
+
+        // Control de los Paneles Secundarios (Tabs Inferiores)
+        function toggleSection(section) {
+            activeSectionTab = section;
+            const btnSources = document.getElementById('btn-sources');
+            const btnContext = document.getElementById('btn-context');
+            const drawer = document.getElementById('drawer-panel');
+
+            drawer.classList.remove('hidden');
+
+            if (section === 'sources') {
+                btnSources.className = "px-4 py-2 bg-raveGreen/10 border border-raveGreen/40 text-raveGreen rounded uppercase tracking-wider hover:bg-raveGreen/20 transition-all";
+                btnContext.className = "px-4 py-2 bg-absoluteBlack border border-raveGreen/20 text-raveGreen/60 rounded uppercase tracking-wider hover:bg-raveGreen/10 transition-all";
+            } else {
+                btnContext.className = "px-4 py-2 bg-raveGreen/10 border border-raveGreen/40 text-raveGreen rounded uppercase tracking-wider hover:bg-raveGreen/20 transition-all";
+                btnSources.className = "px-4 py-2 bg-absoluteBlack border border-raveGreen/20 text-raveGreen/60 rounded uppercase tracking-wider hover:bg-raveGreen/10 transition-all";
+            }
+
+            updateDrawer();
+        }
+
+        function updateDrawer() {
+            const item = itemsFiltrados[indexActivo];
+            const title = document.getElementById('drawer-title');
+            const content = document.getElementById('drawer-content');
+
+            if (activeSectionTab === 'sources') {
+                title.textContent = "INVESTIGACIONES NOTABLES // FUENTE PRIMARIA Y DEBATE HISTORIOGRÁFICO";
+                title.className = "text-xs tracking-widest text-raveGreen uppercase font-mono mb-2 border-b border-raveGreen/20 pb-1";
+                content.textContent = item.investigaciones;
+                content.className = "text-sm font-mono text-raveGreen leading-relaxed";
+            } else {
+                title.textContent = "CONTEXTO ACADÉMICO // MONOGRAFÍAS PARA PROFUNDIZAR";
+                title.className = "text-xs tracking-widest text-electricCyan uppercase font-mono mb-2 border-b border-electricCyan/20 pb-1";
+                content.textContent = item.profundizar;
+                content.className = "text-sm font-mono text-electricCyan leading-relaxed";
+            }
+        }
+
+        // Lógica de Modales de Arte
+        function openArtModal(title, desc) {
+            document.getElementById('modal-image').src = "https://images.unsplash.com/photo-1605721911519-3dfeb3be25e7?auto=format&fit=crop&w=800&q=80"; // Fallback visual abstracto para desarrollo
+            document.getElementById('modal-art-title').textContent = title;
+            document.getElementById('modal-art-desc').textContent = desc || "Muestra gráfica catalogada bajo sospecha heurística frente al hegemón.";
+            document.getElementById('art-modal').classList.remove('hidden');
+        }
+
+        function closeArtModal() {
+            document.getElementById('art-modal').classList.add('hidden');
+        }
+
+        // MECÁNICA CRUCIAL: COPIADO AUTOMÁTICO DE PROMPT EN UN CLIC
+        function copyMasterPrompt() {
+            const item = itemsFiltrados[indexActivo];
+            
+            // Construcción del Master Prompt con los metadatos dinámicos del hecho actual
+            const masterPrompt = `[Rol: Historiador crítico y experto en estudios subalternos]
+Analiza en profundidad el siguiente evento del "Compendio de matanzas":
+- Evento: ${item.titulo}
+- Fecha y Lugar: ${item.fecha} en ${item.lugar}
+- Contexto estructural: ${item.resumen}
+
+Utilizando como base el marco de investigacion de [${item.investigaciones}] y la bibliografia de contexto [${item.profundizar}], desarrolla un estudio historiográfico detallado que aborde de manera sistematica:
+1) La asimetría de poder específica del caso y los mecanismos institucionales o punitivos empleados por el hegemón.
+2) El análisis crítico del discurso y las etiquetas utilizadas históricamente por el poder para criminalizar o deslegitimar a los actores subalternos involucrados.
+3) El estado actual del debate académico, revisiones demográficas o hallazgos arqueológicos recientes sobre el caso.
+
+Devuelve el análisis con un tono estrictamente académico, con perspectiva de sospecha heurística frente al relato oficial y con rigor metodológico estricto.`;
+
+            // API de portapapeles nativa del navegador
+            navigator.clipboard.writeText(masterPrompt).then(() => {
+                showToastNotification();
+            }).catch(err => {
+                console.error('Error al ejecutar el script de copiado masivo: ', err);
+            });
+        }
+
+        function showToastNotification() {
+            const toast = document.getElementById('toast-notification');
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
